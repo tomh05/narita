@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_time: 2015-10-28 23:07:23
+  contact_name: MyString
+  contact_number: MyString
+
+two:
+  event_time: 2015-10-28 23:07:23
+  contact_name: MyString
+  contact_number: MyString
