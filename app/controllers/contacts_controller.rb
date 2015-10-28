@@ -61,6 +61,23 @@ class ContactsController < ApplicationController
     end
   end
 
+  def import
+    f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/contacts.csv");
+
+    csv_text = f.read
+    csv = CSV.parse(csv_text, :headers => false)
+    csv.each do |row|
+      parsed_event_time = DateTime.parse(row[0].to_s+'_'+row[1].to_s)
+      @contact = Contact.find_or_initialize_by(event_time: parsed_event_time, contact_name: row[2].to_s, contact_number: row[3])
+      @contact.save
+    end
+
+    @data = {'result' => 'Contacts imported'}
+    respond_to do |format|
+        format.json {render :json => @data.as_json}
+    end   
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
