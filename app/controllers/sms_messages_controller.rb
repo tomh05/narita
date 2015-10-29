@@ -68,7 +68,7 @@ class SmsMessagesController < ApplicationController
     csv = CSV.parse(csv_text, :headers => false)
     csv.each do |row|
       parsed_event_time = DateTime.parse(row[0].to_s+'_'+row[1].to_s)
-      @location = SmsMessage.find_or_initialize_by(sms_content: row[2].to_, sms_sender: row[3].to_s)
+      @location = SmsMessage.find_or_initialize_by(sms_content: row[2].to_s, sms_sender: URI.unescape(row[3].to_s))
       @location.save
     end
 
