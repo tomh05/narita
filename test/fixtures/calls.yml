@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_time: 2015-10-28 23:56:38
+  call_date: 2015-10-28
+  call_number: MyString
+  call_type: MyString
+  call_duration: MyString
+
+two:
+  event_time: 2015-10-28 23:56:38
+  call_date: 2015-10-28
+  call_number: MyString
+  call_type: MyString
+  call_duration: MyString
