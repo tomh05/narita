@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @sms_message.event_time %>
+</p>
+
+<p>
+  <strong>Sms content:</strong>
+  <%= @sms_message.sms_content %>
+</p>
+
+<p>
+  <strong>Sms sender:</strong>
+  <%= @sms_message.sms_sender %>
+</p>
+
+<%= link_to 'Edit', edit_sms_message_path(@sms_message) %> |
+<%= link_to 'Back', sms_messages_path %>

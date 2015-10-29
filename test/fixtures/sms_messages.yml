@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_time: 2015-10-29 07:27:25
+  sms_content: MyText
+  sms_sender: MyString
+
+two:
+  event_time: 2015-10-29 07:27:25
+  sms_content: MyText
+  sms_sender: MyString
