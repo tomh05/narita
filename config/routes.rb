@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'apps', to: 'apps#import', :defaults => { :format => 'json' }
     get 'sms', to: 'sms_messages#import', :defaults => { :format => 'json' }
     get 'locations', to: 'locations#import', :defaults => { :format => 'json' }
-    get 'browsers', to: 'browsers#import', :defaults => { :format => 'json' }
+    get 'browsers/:filepath', to: 'browsers#import', :defaults => { :format => 'json' }
   end
 
 end
