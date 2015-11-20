@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   resources :locations
   
   scope '/import' do
-    get 'contacts', to: 'contacts#import', :defaults => { :format => 'json' }
-    get 'calls', to: 'calls#import', :defaults => { :format => 'json' }
-    get 'apps', to: 'apps#import', :defaults => { :format => 'json' }
-    get 'sms', to: 'sms_messages#import', :defaults => { :format => 'json' }
-    get 'locations', to: 'locations#import', :defaults => { :format => 'json' }
+    get 'contacts/:filepath', to: 'contacts#import', :defaults => { :format => 'json' }
+    get 'calls/:filepath', to: 'calls#import', :defaults => { :format => 'json' }
+    get 'apps/:filepath', to: 'apps#import', :defaults => { :format => 'json' }
+    get 'sms/:filepath', to: 'sms_messages#import', :defaults => { :format => 'json' }
+    get 'locations/:filepath', to: 'locations#import', :defaults => { :format => 'json' }
     get 'browsers/:filepath', to: 'browsers#import', :defaults => { :format => 'json' }
   end
 
