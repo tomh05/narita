@@ -2,10 +2,9 @@
 
 <h1>Listing Browsers</h1>
 
-<table class="table table-striped">
+<table>
   <thead>
     <tr>
-      <!-- <th>Event time</th> -->
       <th>Username</th>
       <th>Title</th>
       <th>Url</th>
@@ -16,11 +15,12 @@
   <tbody>
     <% @browsers.each do |browser| %>
       <tr>
-        <!-- <td><%= browser.event_time %></td> -->
         <td><%= browser.username %></td>
         <td><%= browser.title %></td>
         <td><%= browser.url %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+        <td><%= link_to 'Show', browser %></td>
+        <td><%= link_to 'Edit', edit_browser_path(browser) %></td>
+        <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,6 +28,4 @@
 
 <br>
 
-
-
-
+<%= link_to 'New Browser', new_browser_path %>
