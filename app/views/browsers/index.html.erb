@@ -2,6 +2,47 @@
 
 <h1>Listing Browsers</h1>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Event time</th>
+      <th>Username</th>
+      <th>Title</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @browsers.each do |browser| %>
+      <tr>
+        <td><%= browser.event_time %></td>
+        <td><%= browser.username %></td>
+        <td><%= browser.title %></td>
+        <td><%= browser.url %></td>
+        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Browsers</h1>
+
 <table>
   <thead>
     <tr>
@@ -29,3 +70,7 @@
 <br>
 
 <%= link_to 'New Browser', new_browser_path %>
+
+
+
+
