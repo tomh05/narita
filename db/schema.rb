@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120115317) do
+ActiveRecord::Schema.define(version: 20151120213740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20151120115317) do
     t.string   "app_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "username"
   end
 
   create_table "browsers", force: :cascade do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20151120115317) do
     t.string   "call_duration"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "username"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 20151120115317) do
     t.string   "contact_number"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "username"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(version: 20151120115317) do
     t.string   "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "username"
   end
 
   create_table "sms_messages", force: :cascade do |t|
@@ -64,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151120115317) do
     t.string   "sms_sender"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "username"
   end
 
 end
