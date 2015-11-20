@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @browser.username %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @browser.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @browser.url %>
+</p>
+
+<%= link_to 'Edit', edit_browser_path(@browser) %> |
+<%= link_to 'Back', browsers_path %>

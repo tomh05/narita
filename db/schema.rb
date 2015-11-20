@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028235638) do
+ActiveRecord::Schema.define(version: 20151120115317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.datetime "event_time"
+    t.string   "app_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "browsers", force: :cascade do |t|
+    t.string   "username"
+    t.string   "title"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "event_time"
+  end
 
   create_table "calls", force: :cascade do |t|
     t.datetime "event_time"
@@ -40,6 +56,14 @@ ActiveRecord::Schema.define(version: 20151028235638) do
     t.string   "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sms_messages", force: :cascade do |t|
+    t.datetime "event_time"
+    t.text     "sms_content"
+    t.string   "sms_sender"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
