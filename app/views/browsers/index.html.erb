@@ -18,14 +18,10 @@
         <td><%= browser.username %></td>
         <td><%= browser.title %></td>
         <td><%= browser.url %></td>
-        <td><%= link_to 'Show', browser %></td>
-        <td><%= link_to 'Edit', edit_browser_path(browser) %></td>
-        <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Browser', new_browser_path %>
