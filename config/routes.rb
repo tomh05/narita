@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     get 'locations/:filepath', to: 'locations#import', :defaults => { :format => 'json' }
     get 'browsers/:filepath', to: 'browsers#import', :defaults => { :format => 'json' }
   end
+  
+  scope '/system' do
+    get 'ping', to: 'apps#ping', :defaults => { :format => 'json' }
+  end
 
 end
   

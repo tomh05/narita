@@ -77,6 +77,12 @@ class AppsController < ApplicationController
     end   
   end
 
+  def ping
+    @data = {'result' => 'Application is running'}
+    respond_to do |format|
+        format.json {render :json => @data.as_json}
+    end         
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
