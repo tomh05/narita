@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :photos
+
   resources :browsers
 
   resources :sms_messages
