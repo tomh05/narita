@@ -70,6 +70,7 @@ class SmsMessagesController < ApplicationController
       @sms = SmsMessage.find_or_initialize_by(sms_sender: row[2].to_s, sms_content: URI.unescape(row[7].to_s), username: row[4].to_s)
       @sms.sms_date = parsed_sms_date
       @sms.white_list = row[5].to_s
+      @sms.sms_folder = row[3].to_s
       @sms.save
     end
 
