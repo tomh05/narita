@@ -5,11 +5,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
       <th>Title</th>
       <th>Url</th>
       <th>Last visit</th>
       <th>Visit</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @browsers.each do |browser| %>
       <tr>
-        <td><%= browser.username %></td>
         <td><%= browser.title %></td>
         <td><%= browser.url %></td>
         <td><%= browser.visit_date %></td>
         <td><%= browser.visit_total %></td>
+        <td><%= browser.username %></td>
         <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
