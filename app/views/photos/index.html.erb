@@ -2,10 +2,16 @@
 
 <h1>Listing Photos</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Url</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Model</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,10 +19,9 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><%= photo.url %></td>
-        <td><%= link_to 'Show', photo %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><a href='<%= photo.url %>'><%= photo.url %></a></td>
+        <td><%= photo.width %></td>
+        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

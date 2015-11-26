@@ -70,10 +70,6 @@ class PhotosController < ApplicationController
     filename = params[:filename]+"."+params[:filetype]
     file = open(url+filename)
     image_exif = get_exif_data file
-
-    puts 'width of image using exif = '+image_exif['width'].to_s
-    puts 'height of image using exif = '+image_exif['height'].to_s
-
     @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
     @image.width = image_exif['width'].to_s
     @image.height = image_exif['height'].to_s
