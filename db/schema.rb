@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125210233) do
+ActiveRecord::Schema.define(version: 20151126120432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20151125210233) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "username"
+    t.string   "width"
+    t.string   "height"
+    t.string   "model"
+    t.datetime "photo_date"
+    t.string   "photo_lat"
+    t.string   "photo_long"
   end
 
   create_table "sms_messages", force: :cascade do |t|

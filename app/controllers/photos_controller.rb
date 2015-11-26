@@ -115,6 +115,7 @@ class PhotosController < ApplicationController
     rescue Exception => e
       
     end
+    data = Hash.new
     data = { "width" => width, "height" => height, "date_time" => date_time, 
       "model" => model, "gps_latitude" => gps_latitude, "gps_longitude" => gps_longitude   }
     data
