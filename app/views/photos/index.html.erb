@@ -21,6 +21,11 @@
       <tr>
         <td><a href='<%= photo.url %>'><%= photo.url %></a></td>
         <td><%= photo.width %></td>
+        <td><%= photo.height %></td>
+        <td><%= photo.model %></td>
+        <td><%= photo.photo_date %></td>
+        <td><%= photo.photo_lat %></td>
+        <td><%= photo.photo_long %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
@@ -29,4 +34,3 @@
 
 <br>
 
-<%= link_to 'New Photo', new_photo_path %>
