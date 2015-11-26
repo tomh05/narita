@@ -78,9 +78,9 @@ class PhotosController < ApplicationController
     @image.width = image_exif['width'].to_s
     @image.height = image_exif['height'].to_s
     @image.model = image_exif['model'].to_s
-    @image.photo_date = DateTime.parse(image_exif['photo_date'].to_s)
-    @image.photo_lat = image_exif['photo_lat'].to_s
-    @image.photo_long = image_exif['photo_long'].to_s
+    @image.photo_date = DateTime.parse(image_exif['date_time'].to_s)
+    @image.photo_lat = image_exif['gps_latitude'].to_s
+    @image.photo_long = image_exif['gps_longitude'].to_s
     @image.save
     @data = {'result' => 'Image imported'}
     render json: @data.as_json
