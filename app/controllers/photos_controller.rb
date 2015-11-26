@@ -70,14 +70,17 @@ class PhotosController < ApplicationController
     filename = params[:filename]+"."+params[:filetype]
     file = open(url+filename)
     image_exif = get_exif_data file
-    # width = EXIFR::JPEG.new(file).width  
-    # height = EXIFR::JPEG.new(file).height
-    # date_time = EXIFR::JPEG.new(file).date_time     
 
     puts 'width of image using exif = '+image_exif['width'].to_s
     puts 'height of image using exif = '+image_exif['height'].to_s
 
     @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
+    @image.width = image_exif['width'].to_s
+    @image.height = image_exif['height'].to_s
+    @image.model = image_exif['model'].to_s
+    @image.photo_date = DateTime.parse(image_exif['photo_date'].to_s)
+    @image.photo_lat = image_exif['photo_lat'].to_s
+    @image.photo_long = image_exif['photo_long'].to_s
     @image.save
     @data = {'result' => 'Image imported'}
     render json: @data.as_json
@@ -88,32 +91,32 @@ class PhotosController < ApplicationController
     begin
       width = image_exif.width        
     rescue Exception => e
-      
+      width = ""
     end
     begin
       height = image_exif.height       
     rescue Exception => e
-      
+      height = ""
     end
     begin
       date_time = image_exif.date_time       
     rescue Exception => e
-      
+      date_time = ""
     end    
     begin
       model = image_exif.model        
     rescue Exception => e
-      
+      model = ""
     end  
     begin
       gps_latitude = image_exif.gps.latitude       
     rescue Exception => e
-      
+      gps_latitude = ""
     end
     begin
       gps_longitude = image_exif.gps.longitude       
     rescue Exception => e
-      
+      gps_longitude = ""
     end
     data = Hash.new
     data = { "width" => width, "height" => height, "date_time" => date_time, 
