@@ -62,7 +62,8 @@ class PhotosController < ApplicationController
   end
 
   def import
-    @image = Photo.find_or_initialize_by(url: params[:filepath])
+    url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/images/"
+    @image = Photo.find_or_initialize_by(url: url+params[:filepath])
     @image.save
     @data = {'result' => 'Image imported'}
     render json: @data.as_json
