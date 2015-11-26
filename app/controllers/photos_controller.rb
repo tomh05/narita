@@ -74,8 +74,8 @@ class PhotosController < ApplicationController
     # height = EXIFR::JPEG.new(file).height
     # date_time = EXIFR::JPEG.new(file).date_time     
 
-    puts 'width of image using exif = '+image_exif[:width].to_s
-    puts 'height of image using exif = '+image_exif[:height].to_s
+    puts 'width of image using exif = '+image_exif['width'].to_s
+    puts 'height of image using exif = '+image_exif['height'].to_s
 
     @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
     @image.save
