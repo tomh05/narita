@@ -64,11 +64,8 @@ class PhotosController < ApplicationController
   def import
     @image = Photo.find_or_initialize_by(url: params[:filepath])
     @image.save
-
     @data = {'result' => 'Image imported'}
-    respond_to do |format|
-        format.json {render :json => @data.as_json}
-    end   
+    render json: @data.as_json
   end
 
   private
