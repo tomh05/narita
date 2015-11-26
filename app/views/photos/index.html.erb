@@ -6,9 +6,6 @@
   <thead>
     <tr>
       <th>Url</th>
-      <th>Width</th>
-      <th>Height</th>
-      <th>Model</th>
       <th>Date taken</th>
       <th>Lat</th>
       <th>Long</th>
@@ -21,9 +18,6 @@
     <% @photos.each do |photo| %>
       <tr>
         <td><a href='<%= photo.url %>'><%= photo.url %></a></td>
-        <td><%= photo.width %></td>
-        <td><%= photo.height %></td>
-        <td><%= photo.model %></td>
         <td><%= photo.photo_date %></td>
         <td><%= photo.photo_lat %></td>
         <td><%= photo.photo_long %></td>
