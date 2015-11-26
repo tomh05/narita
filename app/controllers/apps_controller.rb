@@ -77,6 +77,23 @@ class AppsController < ApplicationController
     end   
   end
 
+  def import_summary
+    f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv");
+    csv_text = f.read
+    csv = CSV.parse(csv_text, :headers => false)
+    csv.each do |row|
+      # parsed_event_time = DateTime.parse(row[0].to_s+'_'+row[1].to_s)
+      # parsed_last_used
+      @app = App.find_or_initialize_by(app_name: row[2].to_s, username: row[5].to_s )
+      @app.save
+    end
+
+    @data = {'result' => 'Apps summary imported'}
+    respond_to do |format|
+        format.json {render :json => @data.as_json}
+    end   
+  end
+
   def ping
     @data = {'result' => 'Application is running'}
     respond_to do |format|
