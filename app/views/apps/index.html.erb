@@ -19,6 +19,7 @@
         <td><%= app.app_name %></td>
         <td><%= app.last_used %></td>
         <td><%= app.total_use %></td>
+        <td><%= app.username %></td>
         <td><%= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
