@@ -9,6 +9,7 @@
       <th>Width</th>
       <th>Height</th>
       <th>Model</th>
+      <th>Date taken</th>
       <th>Lat</th>
       <th>Long</th>
       <th>User</th>
@@ -26,6 +27,7 @@
         <td><%= photo.photo_date %></td>
         <td><%= photo.photo_lat %></td>
         <td><%= photo.photo_long %></td>
+        <td><%= photo.username %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
