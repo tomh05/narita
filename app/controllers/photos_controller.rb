@@ -68,7 +68,8 @@ class PhotosController < ApplicationController
   def import
     url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/testing/"
     filename = params[:filename]+"."+params[:filetype]
-    width = EXIFR::JPEG.new(url+filename).width   
+    file = File.open(url+filename)
+    width = EXIFR::JPEG.new(file).width   
 
     puts 'width of image using exif = '+width.to_s
 
