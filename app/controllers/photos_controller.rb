@@ -69,14 +69,55 @@ class PhotosController < ApplicationController
     url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/testing/"
     filename = params[:filename]+"."+params[:filetype]
     file = open(url+filename)
-    width = EXIFR::JPEG.new(file).width   
+    image_exif = get_exif_data file
+    # width = EXIFR::JPEG.new(file).width  
+    # height = EXIFR::JPEG.new(file).height
+    # date_time = EXIFR::JPEG.new(file).date_time     
 
-    puts 'width of image using exif = '+width.to_s
+    puts 'width of image using exif = '+image_exif[:width].to_s
+    puts 'height of image using exif = '+image_exif[:height].to_s
 
     @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
     @image.save
     @data = {'result' => 'Image imported'}
     render json: @data.as_json
+  end
+
+  def get_exif_data file
+    image_exif = EXIFR::JPEG.new(file)
+    begin
+      width = image_exif.width        
+    rescue Exception => e
+      
+    end
+    begin
+      height = image_exif.height       
+    rescue Exception => e
+      
+    end
+    begin
+      date_time = image_exif.date_time       
+    rescue Exception => e
+      
+    end    
+    begin
+      model = image_exif.model        
+    rescue Exception => e
+      
+    end  
+    begin
+      gps_latitude = image_exif.gps.latitude       
+    rescue Exception => e
+      
+    end
+    begin
+      gps_longitude = image_exif.gps.longitude       
+    rescue Exception => e
+      
+    end
+    data = { "width" => width, "height" => height, "date_time" => date_time, 
+      "model" => model, "gps_latitude" => gps_latitude, "gps_longitude" => gps_longitude   }
+    data
   end
 
   private
