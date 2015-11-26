@@ -1,4 +1,8 @@
 class PhotosController < ApplicationController
+  
+  require 'net/https'
+  require 'open-uri'
+
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
   # GET /photos
@@ -63,7 +67,12 @@ class PhotosController < ApplicationController
 
   def import
     url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/images/"
-    @image = Photo.find_or_initialize_by(url: url+params[:filepath])
+    filename = params[:filename]+"."+params[:filetype]
+    width = EXIFR::JPEG.new(url+filename).width   
+
+    puts 'width of image using exif = '+width.to_s
+
+    @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
     @image.save
     @data = {'result' => 'Image imported'}
     render json: @data.as_json
