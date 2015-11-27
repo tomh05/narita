@@ -66,8 +66,7 @@ class BackupsController < ApplicationController
     csv_text = f.read
     csv = CSV.parse(csv_text, :headers => false)
     csv.each do |row|
-      @backup = Backup.find_or_initialize_by(started: DateTime.parse(row[2].to_s), 
-        ended: DateTime.parse(row[3].to_s), username: row[4].to_s, ref: row[5].to_s)
+      @backup = Backup.find_or_initialize_by(started: DateTime.parse(row[2].to_s), username: row[3].to_s, ref: row[4].to_s)
       @backup.save
     end
 
