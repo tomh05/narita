@@ -62,6 +62,11 @@ class SmsMessagesController < ApplicationController
   end
 
   def import
+
+    dump = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv"
+
+    puts 'file to open = '+dump.to_s
+
     f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv");
     csv_text = f.read
     csv = CSV.parse(csv_text, :headers => false)
