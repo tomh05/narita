@@ -24,14 +24,11 @@ Rails.application.routes.draw do
     post 'locations', to: 'locations#import', :defaults => { :format => 'json' }
     post 'photos', to: 'photos#import', :defaults => { :format => 'json' }
     
-
-    # get 'backup/:filepath', to: 'backups#import', :defaults => { :format => 'json' }
-
     # Not Used.
 
+    # get 'backup/:filepath', to: 'backups#import', :defaults => { :format => 'json' }
     # get 'contacts/:filepath', to: 'contacts#import', :defaults => { :format => 'json' }
     # get 'apps/:filepath', to: 'apps#import', :defaults => { :format => 'json' }
-
   end
   
   scope '/system' do

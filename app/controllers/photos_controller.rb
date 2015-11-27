@@ -67,8 +67,6 @@ class PhotosController < ApplicationController
 
   def import
 
-    # /:filename/:filetype/:username
-
     url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/testing/"
     filename = params[:imagename]+"."+params[:filetype]
     file = open(url+filename)
