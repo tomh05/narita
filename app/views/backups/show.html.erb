@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Started:</strong>
+  <%= @backup.started %>
+</p>
+
+<p>
+  <strong>Ended:</strong>
+  <%= @backup.ended %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @backup.username %>
+</p>
+
+<p>
+  <strong>Ref:</strong>
+  <%= @backup.ref %>
+</p>
+
+<%= link_to 'Edit', edit_backup_path(@backup) %> |
+<%= link_to 'Back', backups_path %>

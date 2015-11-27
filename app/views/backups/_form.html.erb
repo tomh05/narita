@@ -1,0 +1,33 @@
+<%= form_for(@backup) do |f| %>
+  <% if @backup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@backup.errors.count, "error") %> prohibited this backup from being saved:</h2>
+
+      <ul>
+      <% @backup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :started %><br>
+    <%= f.datetime_select :started %>
+  </div>
+  <div class="field">
+    <%= f.label :ended %><br>
+    <%= f.datetime_select :ended %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :ref %><br>
+    <%= f.text_field :ref %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
