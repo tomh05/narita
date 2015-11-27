@@ -66,8 +66,11 @@ class PhotosController < ApplicationController
   end
 
   def import
+
+    # /:filename/:filetype/:username
+
     url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/testing/"
-    filename = params[:filename]+"."+params[:filetype]
+    filename = params[:imagename]+"."+params[:filetype]
     file = open(url+filename)
     image_exif = get_exif_data file
     @image = Photo.find_or_initialize_by(url: url+filename, username: params[:username])
