@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Started</th>
-      <th>Ended</th>
       <th>Username</th>
       <th>Ref</th>
       <th colspan="3"></th>
@@ -16,8 +15,7 @@
   <tbody>
     <% @backups.each do |backup| %>
       <tr>
-        <td><%= backup.started %></td>
-        <td><%= backup.ended %></td>
+        <td><%= backup.created_at %></td>
         <td><%= backup.username %></td>
         <td><%= backup.ref %></td>
         <td><%= link_to 'Destroy', backup, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger'  %></td>
