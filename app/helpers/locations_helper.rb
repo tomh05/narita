@@ -4,9 +4,9 @@ module LocationsHelper
       return current_date.strftime("#{current_date.day.ordinalize} %b %Y, %H:%M")
     end
 
-    def get_map_url lat, long, label
-        # return "<a href=https://www.google.com/maps?q="+lat+","+long+">"+label+"</a>"
-        return "http://www.w3schools.com/html/"
+    def get_map_url lat, long
+        return "https://www.google.com/maps?q="+lat+","+long
+        # return "http://www.w3schools.com/html/"
     end
 
 end
