@@ -17,7 +17,7 @@
   <tbody>
     <% @calls.each do |call| %>
       <tr>
-        <td><%= call.call_date %></td>
+        <td><%= format_date call.event_time %></td>
         <td><%= call.call_number %></td>
         <td><%= call.call_type %></td>
         <td><%= call.call_duration %></td>
