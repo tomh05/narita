@@ -20,7 +20,7 @@
         <td><%= format_date location.event_time %></td>
         <% @map_url = get_map_url location.lat, location.long %>
         <td><%= link_to location.lat, @map_url, :target => "_blank" %></td>
-        <td><%= location.long %></td>
+        <td><%= link_to location.long, @map_url, :target => "_blank" %></td>
         <td><%= location.username %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
