@@ -5,7 +5,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Event time</th>
+      <th>Date</th>  
+      <th>Time</th>
       <th>Lat</th>
       <th>Long</th>
       <th>User</th>
@@ -16,7 +17,7 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= location.event_time %></td>
+        <td><%= format_date location.event_time %></td>
         <td><%= location.lat %></td>
         <td><%= location.long %></td>
         <td><%= location.username %></td>
