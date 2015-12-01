@@ -5,7 +5,7 @@ module LocationsHelper
     end
 
     def get_map_url lat, long, label
-        return "<a href=https://www.google.com/maps?q="+lat+","+long+">"+label+"</a>"
+        return '<a href="https://www.google.com/maps?q="+lat+","+long+"">"+label+"</a>'
     end
 
 end
