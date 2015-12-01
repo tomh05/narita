@@ -6,7 +6,7 @@ module LocationsHelper
 
     def get_map_url lat, long, label
         # return "<a href=https://www.google.com/maps?q="+lat+","+long+">"+label+"</a>"
-        return '<a href="http://www.w3schools.com/html/">Visit our HTML tutorial</a>'
+        return "http://www.w3schools.com/html/"
     end
 
 end
