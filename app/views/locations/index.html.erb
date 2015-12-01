@@ -8,6 +8,7 @@
       <th>Event time</th>
       <th>Lat</th>
       <th>Long</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= location.event_time %></td>
         <td><%= location.lat %></td>
         <td><%= location.long %></td>
+        <td><%= location.username %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
