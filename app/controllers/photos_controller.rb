@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   require 'open-uri'
 
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import, :get_exif_data]
 
   # GET /photos
   # GET /photos.json

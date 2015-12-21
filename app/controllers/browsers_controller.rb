@@ -1,5 +1,6 @@
 class BrowsersController < ApplicationController
   before_action :set_browser, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /browsers
   # GET /browsers.json

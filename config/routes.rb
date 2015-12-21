@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :users
+
   resources :backups
 
   resources :photos
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
   resources :contacts
 
   resources :locations
+
+  root to: "apps#index"
   
   scope '/import' do
     post 'sms', to: 'sms_messages#import', :defaults => { :format => 'json' }

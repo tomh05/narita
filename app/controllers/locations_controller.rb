@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   require 'csv'
 
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /locations
   # GET /locations.json

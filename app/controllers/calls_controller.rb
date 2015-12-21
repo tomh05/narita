@@ -1,6 +1,6 @@
 class CallsController < ApplicationController
   before_action :set_call, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, :except => [:import]
   # GET /calls
   # GET /calls.json
   def index

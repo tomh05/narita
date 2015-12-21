@@ -1,5 +1,6 @@
 class BackupsController < ApplicationController
   before_action :set_backup, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /backups
   # GET /backups.json

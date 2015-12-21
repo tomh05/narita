@@ -1,5 +1,6 @@
 class SmsMessagesController < ApplicationController
   before_action :set_sms_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /sms_messages
   # GET /sms_messages.json
