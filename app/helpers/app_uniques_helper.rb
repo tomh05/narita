@@ -1,0 +1,2 @@
+module AppUniquesHelper
+end

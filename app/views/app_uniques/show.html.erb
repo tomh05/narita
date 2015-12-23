@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @app_unique.event_time %>
+</p>
+
+<p>
+  <strong>App name:</strong>
+  <%= @app_unique.app_name %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @app_unique.username %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @app_unique.event_type %>
+</p>
+
+<%= link_to 'Edit', edit_app_unique_path(@app_unique) %> |
+<%= link_to 'Back', app_uniques_path %>
