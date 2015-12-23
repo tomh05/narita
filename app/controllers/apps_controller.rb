@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:ping, :import_summary]
+  before_action :authenticate_user!, :except => [:ping, :import]
 
   # GET /apps
   # GET /apps.json

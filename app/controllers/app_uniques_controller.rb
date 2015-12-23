@@ -1,5 +1,6 @@
 class AppUniquesController < ApplicationController
   before_action :set_app_unique, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /app_uniques
   # GET /app_uniques.json
