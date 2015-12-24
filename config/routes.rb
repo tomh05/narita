@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   get 'interactions'  , to: 'interactions#index'
 
-
   devise_for :users
 
   resources :facebook_messages

@@ -2,11 +2,16 @@ class InteractionsController < ApplicationController
   def index
     if params.has_key?(:selections)
       @username = params[:selections]["username"]
+<<<<<<< HEAD
       @interactee = params[:selections]["interactee"]
+=======
+      @number = params[:selections]["number"]
+>>>>>>> GUI beginnings for calls and interactions
     end
 
 
     @usernames = Call.select("DISTINCT username").union(SmsMessage.select("DISTINCT username"))
+<<<<<<< HEAD
 
     @usernames = @usernames.joins("LEFT JOIN people ON calls.username = people.google")
     @usernames = @usernames.select("username,CONCAT(people.first_name,' ',people.last_name) as name")
@@ -70,5 +75,12 @@ class InteractionsController < ApplicationController
 
       @interactions.sort! { |a,b| a.datetime <=> b.datetime}
 
+=======
+    @numbers = Call.username(@username).select("DISTINCT call_number AS number").union(SmsMessage.username(@username).select("DISTINCT sms_sender as number"))
+
+      @calls = Call.username(@username).number(@number)
+
+      @sms_messages = SmsMessage.username(@username).number(@number)
+>>>>>>> GUI beginnings for calls and interactions
   end
 end

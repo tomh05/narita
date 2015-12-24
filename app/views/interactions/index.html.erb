@@ -2,11 +2,18 @@
 
 <%= form_tag interactions_path, :method => 'get', :id => "products_search" do %>
   <p>
+<<<<<<< HEAD
                 <%= label_tag :selections, "Between:"  %>
     <%= collection_select :selections, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
                 <%= label_tag :interactee, "And:"  %>
 
     <%= collection_select :selections, :interactee, @interactees, :number, :name, {include_blank: false, selected: @number}  %>
+=======
+                <%= label_tag :call, "Between:"  %>
+    <%= collection_select :selections, :username, @usernames, :username, :username, {include_blank: false, selected: @username}  %>
+                <%= label_tag :interactee, "And:"  %>
+    <%= collection_select :selections, :number, @numbers, :number, :number, {include_blank: false, selected: @number}  %>
+>>>>>>> GUI beginnings for calls and interactions
 <div class="container">
     <div class='col-md-5'>
                 <%= label_tag :fromdate, "From:"  %>
@@ -38,6 +45,7 @@
   </p>
 <% end %>
 
+<<<<<<< HEAD
     <% currentdate = DateTime.new(1970,01,01) %>
 
     <% @interactions.each do |interaction| %>
@@ -83,3 +91,61 @@
       <% end %>
       </div>
 <% end %>
+=======
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Number</th>
+      <th>Type</th>
+      <th>Duration</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calls.each do |call| %>
+      <tr>
+        <td><%= format_date call.event_time %></td>
+        <td><%= call.call_number %></td>
+        <td><%= call.call_type %></td>
+        <td><%= call.call_duration %></td>
+        <td><%= call.username %></td>
+        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+    <% if @calls.empty? %>
+        <td colspan=5><center><em>No entries found</em></center></td>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Date</th>
+      <th>Message</th>
+      <th>Folder</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sms_messages.each do |sms_message| %>
+      <tr>
+        <td><%= sms_message.sms_sender %></td>
+        <td><%= sms_message.sms_date %></td>
+        <td><%= sms_message.sms_content %></td>
+        <td><%= sms_message.sms_folder %></td>
+        <td><%= sms_message.username %></td>
+        <td><%= link_to 'Destroy', sms_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+>>>>>>> GUI beginnings for calls and interactions
