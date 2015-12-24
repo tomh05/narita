@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @screen.event_time %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @screen.event_type %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @screen.username %>
+</p>
+
+<%= link_to 'Edit', edit_screen_path(@screen) %> |
+<%= link_to 'Back', screens_path %>

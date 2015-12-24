@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_time: 2015-12-24 19:29:09
+  event_type: MyString
+  username: MyString
+
+two:
+  event_time: 2015-12-24 19:29:09
+  event_type: MyString
+  username: MyString

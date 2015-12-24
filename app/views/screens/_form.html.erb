@@ -1,0 +1,29 @@
+<%= form_for(@screen) do |f| %>
+  <% if @screen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@screen.errors.count, "error") %> prohibited this screen from being saved:</h2>
+
+      <ul>
+      <% @screen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event_time %><br>
+    <%= f.datetime_select :event_time %>
+  </div>
+  <div class="field">
+    <%= f.label :event_type %><br>
+    <%= f.text_field :event_type %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

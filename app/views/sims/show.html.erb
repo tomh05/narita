@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @sim.event_time %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @sim.event_type %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @sim.username %>
+</p>
+
+<%= link_to 'Edit', edit_sim_path(@sim) %> |
+<%= link_to 'Back', sims_path %>

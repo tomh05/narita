@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :sims
+
+  resources :screens
+
   resources :app_uniques
 
   devise_for :users

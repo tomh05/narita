@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222223444) do
+ActiveRecord::Schema.define(version: 20151224192933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,22 @@ ActiveRecord::Schema.define(version: 20151222223444) do
     t.datetime "photo_date"
     t.string   "photo_lat"
     t.string   "photo_long"
+  end
+
+  create_table "screens", force: :cascade do |t|
+    t.datetime "event_time"
+    t.string   "event_type"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sims", force: :cascade do |t|
+    t.datetime "event_time"
+    t.string   "event_type"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sms_messages", force: :cascade do |t|
