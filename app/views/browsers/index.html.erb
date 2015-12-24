@@ -25,6 +25,9 @@
         <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
+        <% if @calls.empty? %>
+        <td colspan=5><center><em>No entries found</em></center></td>
+    <% end %>
   </tbody>
 </table>
 

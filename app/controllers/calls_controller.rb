@@ -1,14 +1,80 @@
 class CallsController < ApplicationController
+  require 'net/https'
+  require 'open-uri'
+  require 'csv'
+
   before_action :set_call, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:import]
   # GET /calls
   # GET /calls.json
   def index
-    @calls = Call.all
+    #@calls = Call.all
+    if params.has_key?(:call)
+      @username = params[:call]["username"]
+    end
+
+    if @username.nil? || @username.empty?
+      @calls = Call.all
+    else
+      @calls = Call.username(@username)
+    end
+    #if not params["fromdate"].nil?
+    begin
+      fromdate = Date.strptime(params["fromdate"],"%d/%m/%Y %H:%M")
+      todate = Date.strptime(params["todate"],"%d/%m/%Y %H:%M")
+    rescue
+    puts "invalid date"
+    else
+      @fromdate_str = params["fromdate"]
+      @todate_str = params["todate"]
+      @calls = @calls.daterange(fromdate,todate)
+    end
+
+    @usernames = Call.select("DISTINCT username")
+
+    @stats = Array.new
+
+
+    puts Call.column_names
+
+
+    unless @username.nil? || @username.empty?
+      @stats.push({value: @calls.count, desc: "$ total call events logged"});
+      @stats.push({value: @calls.where(call_type: "OUTGOING").count, desc: "$ total outgoing calls"});
+      @stats.push({value: @calls.where(call_type: "INCOMING").count, desc: "$ total incoming calls"});
+      @stats.push({value: @calls.where(call_type: "MISSED").count, desc: " $ total missed calls"});
+
+      #unique_all = @calls.select("call_number").distinct.count
+      #@stats.push({value: unique_all, desc: " $ people interacted via calls with this person"});
+
+      unique_in = @calls.where(call_type: "INCOMING").select("call_number").distinct.count
+      @stats.push({value: unique_in, desc: " $ people called this person"});
+
+      unique_out = @calls.where(call_type: "OUTGOING").select("call_number").distinct.count
+      @stats.push({value: unique_out, desc: "This person called $ people."});
+
+
+      call_time_secs = @calls.sum("call_duration::integer");
+      mm, ss = call_time_secs.divmod(60)            #=> [4515, 21]
+      hh, mm = mm.divmod(60)           #=> [75, 15]
+      dd, hh = hh.divmod(24)           #=> [3, 3]
+      total_time = dd.to_s + ", "+ hh.to_s.rjust(2,'0') +":"+ mm.to_s.rjust(2,'0')
+      @stats.push({value: total_time, desc: "Total call time $ days, hours:mins"});
+
+      longest_secs = @calls.maximum("call_duration::integer").to_i;
+      puts longest_secs
+      mm, ss = longest_secs.divmod(60)            #=> [4515, 21]
+      hh, mm = mm.divmod(60)           #=> [75, 15]
+      longest_call = hh.to_s + ":" + mm.to_s.rjust(2,'0')
+      @stats.push({value: longest_call, desc: "Longest call $ hours:mins"});
+
+      @total_distinct_outgoing = Call.where(call_type: "OUTGOING").distinct.count
+
+    end
   end
 
   # GET /calls/1
-  # GET /calls/1.json
+  # GET /calls/1.jso:wasn
   def show
   end
 
@@ -73,7 +139,7 @@ class CallsController < ApplicationController
     @data = {'result' => 'Calls imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

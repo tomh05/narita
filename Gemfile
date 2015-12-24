@@ -47,6 +47,12 @@ gem 'rails_12factor'
 gem 'exifr'
 gem 'simplecov', :require => false, :group => :test
 
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+
+gem 'active_record_union'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
