@@ -16,7 +16,7 @@
   <tbody>
     <% @apps.each do |app| %>
       <tr>
-        <td><%= app.app_name %></td>
+        <td><a href='https://play.google.com/store/apps/details?id=<%= app.app_name %>'><%= app.app_name %></a></td>
         <td><%= app.last_used %></td>
         <td><%= app.total_use %></td>
         <td><%= app.username %></td>
