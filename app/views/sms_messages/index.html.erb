@@ -18,7 +18,7 @@
     <% @sms_messages.each do |sms_message| %>
       <tr>
         <td><%= sms_message.sms_sender %></td>
-        <td><%= sms_message.sms_date %></td>
+        <td><%= format_date sms_message.sms_date %></td>
         <td><%= sms_message.sms_content %></td>
         <td><%= sms_message.sms_folder %></td>
         <td><%= sms_message.username %></td>
