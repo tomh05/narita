@@ -60,6 +60,22 @@ class ScreensController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def import
+    f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv");
+    csv_text = f.read
+    csv = CSV.parse(csv_text, :headers => false)
+    csv.each do |row|
+      parsed_event_time = DateTime.parse(row[0].to_s+'_'+row[1].to_s)
+      @app = Screen.find_or_initialize_by(event_time: parsed_event_time, event_type: row[2].to_s, username: row[3].to_s)
+      @app.save
+    end
+
+    @data = {'result' => 'Screen events imported'}
+    respond_to do |format|
+        format.json {render :json => @data.as_json}
+    end   
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

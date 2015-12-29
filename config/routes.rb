@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     post 'locations', to: 'locations#import', :defaults => { :format => 'json' }
     post 'photos', to: 'photos#import', :defaults => { :format => 'json' }
     post 'backup', to: 'backups#import', :defaults => { :format => 'json' }
+    post 'screen', to: 'screens#import', :defaults => { :format => 'json' }
 
     # Not Used.
     # get 'contacts/:filepath', to: 'contacts#import', :defaults => { :format => 'json' }}
