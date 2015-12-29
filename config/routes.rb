@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
+  devise_for :users
+
   resources :sims
 
   resources :screens
 
   resources :app_uniques
-
-  devise_for :users
-
+  
   resources :backups
 
   resources :photos
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     post 'photos', to: 'photos#import', :defaults => { :format => 'json' }
     post 'backup', to: 'backups#import', :defaults => { :format => 'json' }
     post 'screen', to: 'screens#import', :defaults => { :format => 'json' }
+    post 'sim', to: 'sims#import', :defaults => { :format => 'json' }
 
     # Not Used.
     # get 'contacts/:filepath', to: 'contacts#import', :defaults => { :format => 'json' }}
