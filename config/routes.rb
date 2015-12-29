@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  root to: "apps#index"
+  root to: 'welcome#index'
   
   scope '/import' do
     post 'sms', to: 'sms_messages#import', :defaults => { :format => 'json' }
