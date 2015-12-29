@@ -16,7 +16,7 @@
     <% @app_uniques.each do |app_unique| %>
       <tr>
         <td><%= format_date app_unique.event_time %></td>
-        <td><a href='https://play.google.com/store/apps/details?id=<%= app.app_name %>'><%= app_unique.app_name %></a></td>
+        <td><a href='https://play.google.com/store/apps/details?id=<%= app_unique.app_name %>'><%= app_unique.app_name %></a></td>
         <td><%= app_unique.username %></td>
         <td><%= link_to 'Destroy', app_unique, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
