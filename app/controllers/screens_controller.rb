@@ -1,5 +1,6 @@
 class ScreensController < ApplicationController
   before_action :set_screen, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /screens
   # GET /screens.json
