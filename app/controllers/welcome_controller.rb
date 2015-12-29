@@ -4,9 +4,7 @@ class WelcomeController < ApplicationController
   		# render :file => 'public/index.html'
   		# format.html
 
-	    respond_to do |format|
-	        format.html {}
-	    end
+		render template: "welcome/index"
 
 	end
 
