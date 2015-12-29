@@ -19,7 +19,7 @@
       <tr>
         <td><%= browser.title %></td>
         <td><%= link_to browser.url, browser.url, :target => "_blank" %></td>
-        <td><%= browser.visit_date %></td>
+        <td><%= format_date browser.visit_date %></td>
         <td><%= browser.visit_total %></td>
         <td><%= browser.username %></td>
         <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
