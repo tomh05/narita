@@ -18,7 +18,7 @@
     <% @browsers.each do |browser| %>
       <tr>
         <td><%= browser.title %></td>
-        <td><%= browser.url %></td>
+        <td><a href='<%= browser.url %>'><%= browser.url %></a></td>
         <td><%= browser.visit_date %></td>
         <td><%= browser.visit_total %></td>
         <td><%= browser.username %></td>
