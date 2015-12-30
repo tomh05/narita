@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:ping, :import]
+  before_action :authenticate_user!, :except => [:import]
 
   # GET /apps
   # GET /apps.json
@@ -77,13 +77,6 @@ class AppsController < ApplicationController
     respond_to do |format|
         format.json {render :json => @data.as_json}
     end   
-  end
-
-  def ping
-    @data = {'result' => 'Application is running'}
-    respond_to do |format|
-        format.json {render :json => @data.as_json}
-    end         
   end
 
   private
