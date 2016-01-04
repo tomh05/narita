@@ -115,6 +115,12 @@ class InteractionsController < ApplicationController
         newInteraction.type = "sms"
         newInteraction.datetime = sms.sms_date
         newInteraction.content = sms.sms_content
+        if sms.sms_folder == "sent"
+          newInteraction.direction = "outgoing"
+        else
+          newInteraction.direction = "incoming"
+        end
+
         @interactions << newInteraction
       end
 
