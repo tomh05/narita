@@ -40,18 +40,18 @@ class CallsController < ApplicationController
 
     unless @username.nil? || @username.empty?
       @stats.push({value: @calls.count, desc: "$ total call events logged"});
-      @stats.push({value: @calls.where(call_type: "OUTGOING").count, desc: "$ total outgoing calls"});
-      @stats.push({value: @calls.where(call_type: "INCOMING").count, desc: "$ total incoming calls"});
-      @stats.push({value: @calls.where(call_type: "MISSED").count, desc: " $ total missed calls"});
+      @stats.push({value: @calls.where(call_type: "OUTGOING").count, desc: "They made $ outgoing calls"});
+      @stats.push({value: @calls.where(call_type: "INCOMING").count, desc: "They received $ incoming calls"});
+      @stats.push({value: @calls.where(call_type: "MISSED").count, desc: "They missed $ calls"});
 
       #unique_all = @calls.select("call_number").distinct.count
       #@stats.push({value: unique_all, desc: " $ people interacted via calls with this person"});
 
       unique_in = @calls.where(call_type: "INCOMING").select("call_number").distinct.count
-      @stats.push({value: unique_in, desc: " $ people called this person"});
+      @stats.push({value: unique_in, desc: " $ different people called them"});
 
       unique_out = @calls.where(call_type: "OUTGOING").select("call_number").distinct.count
-      @stats.push({value: unique_out, desc: "This person called $ people."});
+      @stats.push({value: unique_out, desc: "This person called $ different people."});
 
 
       call_time_secs = @calls.sum("call_duration::integer");

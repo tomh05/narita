@@ -46,6 +46,7 @@ gem 'autoprefixer-rails'
 gem 'rails_12factor'
 gem 'exifr'
 gem 'simplecov', :require => false, :group => :test
+gem 'chartkick'
 
 
 gem 'momentjs-rails', '>= 2.9.0'

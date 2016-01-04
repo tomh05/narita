@@ -38,89 +38,8 @@
 <% end %>
 
 
+    <% currentdate = DateTime.new(1970,01,01) %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Number</th>
-      <th>Type</th>
-      <th>Duration</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @calls.each do |call| %>
-      <tr>
-        <td><%= format_date call.event_time %></td>
-        <td><%= call.call_number %></td>
-        <td><%= call.call_type %></td>
-        <td><%= call.call_duration %></td>
-        <td><%= call.username %></td>
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
-      </tr>
-    <% end %>
-    <% if @calls.empty? %>
-        <td colspan=5><center><em>No entries found</em></center></td>
-    <% end %>
-  </tbody>
-</table>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Sender</th>
-      <th>Date</th>
-      <th>Message</th>
-      <th>Folder</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @sms_messages.each do |sms_message| %>
-      <tr>
-        <td><%= sms_message.sms_sender %></td>
-        <td><%= sms_message.sms_date %></td>
-        <td><%= sms_message.sms_content %></td>
-        <td><%= sms_message.sms_folder %></td>
-        <td><%= sms_message.username %></td>
-        <td><%= link_to 'Destroy', sms_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger'  %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Sender</th>
-      <th>Date</th>
-      <th>Message</th>
-      <th>Folder</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @interactions.each do |interaction| %>
-      <tr>
-        <td><%= interaction.datetime %></td>
-        <td><%= interaction.type %></td>
-        <td><%= interaction.content %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-    <% currentdate = @interactions.first.datetime %>
-
-    <div class="dateboundary"><%= currentdate.strftime("%a %d %b %Y")%></div>
     <% @interactions.each do |interaction| %>
 
 
@@ -129,19 +48,38 @@
       <div class="dateboundary"><%= currentdate.strftime("%a %d %b %Y")%></div>
     <% end %>
 
+<div class="bubbleholder">
+
+        <% if interaction.direction == "outgoing"%>
+        <div class="timeindicator outgoingtime">
+        <% else %>
+        <div class="timeindicator incomingtime">
+        <% end %>
+        <%= interaction.datetime.strftime("%H:%M") %>
+        </div>
+
     <% if interaction.type == "call"%>
         <% if interaction.direction == "outgoing"%>
           <div class="bubble callbubble outgoingbubble">
+            <p><b> outgoing call</b></p>
         <% else %>
           <div class="bubble callbubble incomingbubble">
+            <p> incoming call</p>
         <% end %>
 
         <%= roughtime(interaction.duration) %>
     </div>
     <% end %>
 
-    <% if interaction.type == "sms"%>
-      <%= interaction.datetime %>
-      <div class="bubble smsbubble"><%= interaction.content %></div>
+   <% if interaction.type == "sms"%>
+        <% if interaction.direction == "outgoing"%>
+          <div class="bubble smsbubble outgoingbubble">
+        <% else %>
+          <div class="bubble smsbubble incomingbubble">
+        <% end %>
+
+      <%= interaction.content %>
+      </div>
       <% end %>
+      </div>
 <% end %>

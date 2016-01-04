@@ -16,6 +16,15 @@ ActiveRecord::Schema.define(version: 20160108153136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "app_names", force: :cascade do |t|
+    t.string   "longname"
+    t.string   "shortname"
+    t.string   "color"
+    t.integer  "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "app_uniques", force: :cascade do |t|
     t.datetime "event_time"
     t.string   "app_name"

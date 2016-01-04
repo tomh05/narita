@@ -5,8 +5,46 @@ class AppUniquesController < ApplicationController
   # GET /app_uniques
   # GET /app_uniques.json
   def index
-    @app_uniques = AppUnique.all
+    @app_uniques = AppUnique.joins("LEFT JOIN app_names ON app_uniques.app_name = app_names.longname").select("app_uniques.*,app_names.shortname,app_names.color,app_names.priority")
+
+    @usernames = AppUnique.select("DISTINCT username")
+    begin
+      fromdate = DateTime.strptime(params["fromdate"],"%d/%m/%Y %H:%M")
+      todate = DateTime.strptime(params["todate"],"%d/%m/%Y %H:%M")
+      puts fromdate
+      @app_uniques = @app_uniques.daterange(fromdate,todate)
+    rescue
+    puts "invalid date"
+    else
+      @fromdate_str = params["fromdate"]
+      @todate_str = params["todate"]
+    end
+
+
+    @app_timeline_data = []
+    @app_uniques.each do |entry|
+      unless entry.priority.nil?
+        next if (entry.priority < 2)
+      end
+      if entry.shortname.present?
+        name = entry.shortname
+      else
+        name = entry.app_name
+      end
+      # ignore close consecutive app logs
+      if ((not @app_timeline_data.empty?) and (@app_timeline_data.last[0] == name) and (entry.event_time - @app_timeline_data.last[2]< 60))
+
+        #puts "diff"
+        #puts entry.event_time - @app_timeline_data.last[2]
+        @app_timeline_data.last[2] = entry.event_time
+        #puts "extending time of " + name
+      else
+        #puts "adding "+name
+        @app_timeline_data << [name, entry.event_time, entry.event_time]
+      end
+    end
   end
+  puts @app_timeline_data
 
   # GET /app_uniques/1
   # GET /app_uniques/1.json
@@ -75,7 +113,7 @@ class AppUniquesController < ApplicationController
     @data = {'result' => 'Apps imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

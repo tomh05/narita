@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :app_names
+
   get 'interactions'  , to: 'interactions#index'
 
-  resources :app_uniques
 
   devise_for :users
 
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   resources :screens
 
   resources :app_uniques
+
+  resources :appnames
 
   resources :backups
 

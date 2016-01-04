@@ -1,6 +1,73 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <p id="notice"><%= notice %></p>
 
 <h1>App Uniques</h1>
+
+<%= form_tag app_uniques_path, :method => 'get', :id => "search" do %>
+  <p>
+    <%= collection_select :app_unique, :username, @usernames, :username, :username, {include_blank: true, selected: @username}  %>
+
+<div class="container">
+    <div class='col-md-5'>
+                <%= label_tag :fromdate, "From:"  %>
+                <%= text_field_tag :fromdate, id:"fromdate", value: @fromdate_str %>
+    </div>
+    <div class='col-md-5'>
+                <%= label_tag :todate, "To:"  %>
+                <%= text_field_tag :todate, id:"todate", value: @todate_str %>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#fromdate').datetimepicker({
+            locale: "en-gb"
+        });
+        $('#todate').datetimepicker({
+            locale: "en-gb",
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#fromdate").on("dp.change", function (e) {
+            $('#todate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#todate").on("dp.change", function (e) {
+            $('#fromdate').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
+    <%= submit_tag "Filter", :name => nil %>
+  </p>
+<% end %>
+
+
+<%= timeline @app_timeline_data, height:"1080px" %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Event time</th>
+      <th>App name</th>
+      <th>User</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% lastname = "" %>
+    <% @app_timeline_data.each do |tl| %>
+    <% %>
+
+      <tr>
+        <td><%= tl[0] %></td>
+        <td><%= tl[1] %></td>
+        <td><%= tl[2] %></td>
+        <td><%= tl[2] - tl[1] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 
 <table class="table table-striped">
   <thead>
@@ -13,10 +80,19 @@
   </thead>
 
   <tbody>
+    <% lastname = "" %>
     <% @app_uniques.each do |app_unique| %>
+    <% %>
+
       <tr>
         <td><%= format_date app_unique.event_time %></td>
-        <td><a href='https://play.google.com/store/apps/details?id=<%= app_unique.app_name %>'><%= app_unique.app_name %></a></td>
+        <td><a href='https://play.google.com/store/apps/details?id=<%= app_unique.app_name %>'>
+          <% if app_unique.shortname.present? %>
+          <%=app_unique.shortname %>
+          <% else %>
+          <%=app_unique.app_name %>
+          <% end %>
+          </a></td>
         <td><%= app_unique.username %></td>
         <td><%= link_to 'Destroy', app_unique, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>

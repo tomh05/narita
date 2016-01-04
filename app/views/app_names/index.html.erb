@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing App Names</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Longname</th>
+      <th>Shortname</th>
+      <th>Color</th>
+      <th>Priority</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @app_names.each do |app_name| %>
+      <tr>
+        <td><%= app_name.longname %></td>
+        <td><%= app_name.shortname %></td>
+        <td><%= app_name.color %></td>
+        <td><%= app_name.priority %></td>
+        <td><%= link_to 'Show', app_name %></td>
+        <td><%= link_to 'Edit', edit_app_name_path(app_name) %></td>
+        <td><%= link_to 'Destroy', app_name, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New App name', new_app_name_path %>

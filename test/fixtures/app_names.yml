@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  longname: MyString
+  shortname: MyString
+  color: MyString
+  priority: 1
+
+two:
+  longname: MyString
+  shortname: MyString
+  color: MyString
+  priority: 1

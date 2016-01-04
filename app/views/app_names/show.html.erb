@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Longname:</strong>
+  <%= @app_name.longname %>
+</p>
+
+<p>
+  <strong>Shortname:</strong>
+  <%= @app_name.shortname %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @app_name.color %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @app_name.priority %>
+</p>
+
+<%= link_to 'Edit', edit_app_name_path(@app_name) %> |
+<%= link_to 'Back', app_names_path %>
