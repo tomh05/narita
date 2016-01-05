@@ -5,7 +5,7 @@ class AppUniquesController < ApplicationController
   # GET /app_uniques
   # GET /app_uniques.json
   def index
-    @app_uniques = AppUnique.joins("LEFT JOIN app_names ON app_uniques.app_name = app_names.longname").select("app_uniques.*,app_names.shortname,app_names.color,app_names.priority")
+    @app_uniques = AppUnique.joins("LEFT JOIN app_names ON app_uniques.app_name = app_names.longname").select("app_uniques.*,app_names.shortname,app_names.color,app_names.priority").order('event_time ASC')
 
     @usernames = AppUnique.select("DISTINCT username")
     begin

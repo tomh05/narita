@@ -103,6 +103,22 @@ ActiveRecord::Schema.define(version: 20160108153136) do
     t.string   "username"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "alt_phone"
+    t.string   "google"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.boolean  "whitelist"
+    t.string   "image"
+    t.integer  "gender"
+    t.text     "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string   "url"
     t.datetime "created_at", null: false

@@ -2,10 +2,11 @@
 
 <%= form_tag interactions_path, :method => 'get', :id => "products_search" do %>
   <p>
-                <%= label_tag :call, "Between:"  %>
-    <%= collection_select :selections, :username, @usernames, :username, :username, {include_blank: false, selected: @username}  %>
+                <%= label_tag :selections, "Between:"  %>
+    <%= collection_select :selections, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
                 <%= label_tag :interactee, "And:"  %>
-    <%= collection_select :selections, :number, @numbers, :number, :number, {include_blank: false, selected: @number}  %>
+
+    <%= collection_select :selections, :interactee, @interactees, :number, :name, {include_blank: false, selected: @number}  %>
 <div class="container">
     <div class='col-md-5'>
                 <%= label_tag :fromdate, "From:"  %>
@@ -37,7 +38,6 @@
   </p>
 <% end %>
 
-
     <% currentdate = DateTime.new(1970,01,01) %>
 
     <% @interactions.each do |interaction| %>
@@ -64,7 +64,7 @@
             <p><b> outgoing call</b></p>
         <% else %>
           <div class="bubble callbubble incomingbubble">
-            <p> incoming call</p>
+            <p><b>incoming call</b></p>
         <% end %>
 
         <%= roughtime(interaction.duration) %>

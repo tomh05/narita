@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :people
+
   resources :app_names
 
   get 'interactions'  , to: 'interactions#index'

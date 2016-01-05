@@ -2,15 +2,28 @@ class InteractionsController < ApplicationController
   def index
     if params.has_key?(:selections)
       @username = params[:selections]["username"]
-      @number = params[:selections]["number"]
+      @interactee = params[:selections]["interactee"]
     end
 
 
     @usernames = Call.select("DISTINCT username").union(SmsMessage.select("DISTINCT username"))
-    @numbers = Call.username(@username).select("DISTINCT call_number AS number").union(SmsMessage.username(@username).select("DISTINCT sms_sender as number"))
-    @calls = Call.username(@username).number(@number)
 
-    @sms_messages = SmsMessage.username(@username).number(@number)
+    @usernames = @usernames.joins("LEFT JOIN people ON calls.username = people.google")
+    @usernames = @usernames.select("username,CONCAT(people.first_name,' ',people.last_name) as name")
+
+
+
+    @interactees = Call.username(@username).select("DISTINCT call_number AS number").union(SmsMessage.username(@username).select("DISTINCT sms_sender as number"))
+    @interactees = @interactees.joins("LEFT JOIN people ON calls.number LIKE CONCAT('%',people.phone)")
+    @interactees = @interactees.select("calls.*,CONCAT(people.first_name,' ',people.last_name) as name")
+    @interactees.each do |i|
+      unless i.name.present?
+        i.name = i.number
+      end
+    end
+
+    @calls = Call.username(@username).number(@interactee)
+    @sms_messages = SmsMessage.username(@username).number(@interactee)
 
     #sql = Call.connection.unprepared_statement {  "((#{@calls.to_sql}) UNION (#{@sms_messages.to_sql})) AS items"}
     #Call.from(sql).order("ASC")

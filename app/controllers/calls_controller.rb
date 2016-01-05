@@ -30,7 +30,17 @@ class CallsController < ApplicationController
       @calls = @calls.daterange(fromdate,todate)
     end
 
+
+    # Replace numbers and usernames with real names
+    @calls_display = @calls.joins("LEFT JOIN people AS people_other ON calls.call_number LIKE CONCAT('%',people_other.phone)")#.select("calls.*,people.first_name,people.last_name").order('event_time ASC')
+    @calls_display = @calls_display.joins("LEFT JOIN people AS people_self ON calls.username = people_self.google")
+    @calls_display = @calls_display.select("calls.*,people_other.first_name as other_first_name,people_other.last_name as other_last_name, people_other.id as other_id, people_self.first_name as own_first_name, people_self.last_name as own_last_name")
+    @calls_display = @calls_display.order('event_time ASC')
+
     @usernames = Call.select("DISTINCT username")
+    @usernames = @usernames.joins("LEFT JOIN people ON calls.username = people.google")
+    @usernames = @usernames.select("CONCAT(people.first_name,' ',people.last_name) as name")
+
 
     @stats = Array.new
 
