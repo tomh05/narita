@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fb_date: 2016-01-07 09:13:13
+  fb_content: MyString
+  fb_from: MyString
+  username: MyString
+
+two:
+  fb_date: 2016-01-07 09:13:13
+  fb_content: MyString
+  fb_from: MyString
+  username: MyString

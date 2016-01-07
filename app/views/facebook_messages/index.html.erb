@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Facebook Messages</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Fb date</th>
+      <th>Fb content</th>
+      <th>Fb from</th>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facebook_messages.each do |facebook_message| %>
+      <tr>
+        <td><%= facebook_message.fb_date %></td>
+        <td><%= facebook_message.fb_content %></td>
+        <td><%= facebook_message.fb_from %></td>
+        <td><%= facebook_message.username %></td>
+        <td><%= link_to 'Destroy', facebook_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

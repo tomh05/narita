@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fb date:</strong>
+  <%= @facebook_message.fb_date %>
+</p>
+
+<p>
+  <strong>Fb content:</strong>
+  <%= @facebook_message.fb_content %>
+</p>
+
+<p>
+  <strong>Fb from:</strong>
+  <%= @facebook_message.fb_from %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @facebook_message.username %>
+</p>
+
+<%= link_to 'Edit', edit_facebook_message_path(@facebook_message) %> |
+<%= link_to 'Back', facebook_messages_path %>

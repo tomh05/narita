@@ -1,0 +1,2 @@
+module FacebookMessagesHelper
+end

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   devise_for :users
 
+  resources :facebook_messages
+
   resources :sims
 
   resources :screens
@@ -37,9 +39,7 @@ Rails.application.routes.draw do
     post 'backup', to: 'backups#import', :defaults => { :format => 'json' }
     post 'screen', to: 'screens#import', :defaults => { :format => 'json' }
     post 'sim', to: 'sims#import', :defaults => { :format => 'json' }
-
-    # Not Used.
-    # get 'contacts/:filepath', to: 'contacts#import', :defaults => { :format => 'json' }}
+    post 'facebook', to: 'facebook_messages#import', :defaults => { :format => 'json' }
   end
   
   scope '/system' do
