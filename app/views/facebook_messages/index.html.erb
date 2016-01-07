@@ -8,6 +8,7 @@
       <th>Date</th>
       <th>Message</th>
       <th>From</th>
+      <th>Type</th>
       <th>Username</th>
       <th colspan="3"></th>
     </tr>
@@ -19,6 +20,7 @@
         <td><%= format_date facebook_message.fb_date %></td>
         <td><%= facebook_message.fb_content %></td>
         <td><%= facebook_message.fb_from %></td>
+        <td><%= facebook_message.message_type %></td>
         <td><%= facebook_message.username %></td>
         <td><%= link_to 'Destroy', facebook_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
