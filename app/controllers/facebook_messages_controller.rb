@@ -64,7 +64,18 @@ class FacebookMessagesController < ApplicationController
 
   def import
 
-    f = open(APP_CONFIG['server_path']+params[:filepath]+".csv");
+
+    f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv");
+    csv_text = f.read
+    csv = CSV.parse(csv_text, :headers => false)
+    csv.each do |row|
+      parsed_message_date = DateTime.parse(row[6].to_s)
+      @fb = FacebookMessage.find_or_initialize_by(fb_from: row[2].to_s, fb_content: URI.unescape(row[7].to_s), username: row[4].to_s)
+      @fb.fb_date = parsed_message_date
+      @fb.white_list = row[5].to_s
+      @fb.sms_folder = row[3].to_s
+      '''
+    f = open(APP_CONFIG[server_path]+params[:filepath]+".csv");
     csv_text = f.read
     csv = CSV.parse(csv_text, :headers => false)
     csv.each do |row|
@@ -72,13 +83,14 @@ class FacebookMessagesController < ApplicationController
       @fb = FacebookMessage.find_or_initialize_by(fb_from: row[2].to_s, fb_content: URI.unescape(row[3].to_s), message_type: row[5].to_s,  username: row[7].to_s)
       @fb.fb_date = parsed_message_date
       @fb.stack_level = row[6].to_s
+      '''
       @fb.save
     end
 
     @data = {'result' => 'Facebook messages imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private
