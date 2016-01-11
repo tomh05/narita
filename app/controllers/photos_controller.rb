@@ -68,7 +68,7 @@ class PhotosController < ApplicationController
 
   def import
 
-    url = "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/testing/"
+    url = APP_CONFIG['server_path_image']
     filename = params[:imagename]+"."+params[:filetype]
     file = open(url+filename)
     image_exif = get_exif_data file
