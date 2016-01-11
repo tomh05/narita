@@ -1,0 +1,11 @@
+defaults: &DEFAULTS
+  server_path: "https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"
+
+development:
+  <<: *DEFAULTS
+
+test:
+  <<: *DEFAULTS
+
+production:
+  <<: *DEFAULTS

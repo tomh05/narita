@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   end
   
   scope '/system' do
-    get 'ping', to: 'apps#ping', :defaults => { :format => 'json' }
+    get 'ping', to: 'welcome#ping', :defaults => { :format => 'json' }
   end
 
 end

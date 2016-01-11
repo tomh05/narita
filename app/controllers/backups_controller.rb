@@ -63,7 +63,7 @@ class BackupsController < ApplicationController
   end
 
   def import
-    f = open("https://s3-us-west-2.amazonaws.com/bbcirfs/coot/logs/"+params[:filepath]+".csv");
+    f = open(APP_CONFIG['server_path']+params[:filepath]+".csv");
     csv_text = f.read
     csv = CSV.parse(csv_text, :headers => false)
     csv.each do |row|
