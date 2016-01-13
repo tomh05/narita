@@ -6,7 +6,8 @@
     <%= collection_select :selections, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
                 <%= label_tag :interactee, "And:"  %>
 
-    <%= collection_select :selections, :interactee, @interactees, :number, :name, {include_blank: false, selected: @number}  %>
+    <%= select_tag "interactee",  options_for_select(@interactees,@interactee) %>
+
 <div class="container">
     <div class='col-md-5'>
                 <%= label_tag :fromdate, "From:"  %>
