@@ -115,53 +115,5 @@ class InteractionsController < ApplicationController
   else
     @interactions = []
   end
-
-    #sql = Call.connection.unprepared_statement {  "((#{@calls.to_sql}) UNION (#{@sms_messages.to_sql})) AS items"}
-    #Call.from(sql).order("ASC")
-
-#<<<<<<< HEAD
-    @all_interactions = @calls + @sms_messages
-    puts "here are all:"
-    @all_interactions.each do |alli|
-      puts alli
-    end
-
-      @interactions = []
-
-      @calls.each do |call|
-        newInteraction = Interaction.new;
-        newInteraction.type = "call"
-        newInteraction.datetime = call.event_time
-        newInteraction.duration = call.call_duration
-        if call.call_type == "OUTGOING"
-          newInteraction.direction = "outgoing"
-        else
-          newInteraction.direction = "incoming"
-        end
-
-        if call.call_type == "missed"
-          newInteraction.missed = true
-        end
-        @interactions << newInteraction
-      end
-
-
-      @sms_messages.each do |sms|
-        newInteraction = Interaction.new;
-        newInteraction.type = "sms"
-        newInteraction.datetime = sms.sms_date
-        newInteraction.content = sms.sms_content
-        if sms.sms_folder == "sent"
-          newInteraction.direction = "outgoing"
-        else
-          newInteraction.direction = "incoming"
-        end
-
-        @interactions << newInteraction
-      end
-
-      @interactions.sort! { |a,b| a.datetime <=> b.datetime}
-
-
-  end
+end
 end
