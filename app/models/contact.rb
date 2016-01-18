@@ -1,3 +1,4 @@
+require 'csv'
 class Contact < ActiveRecord::Base
   def self.import(csv_text)
     csv = CSV.parse(csv_text, :headers => false)

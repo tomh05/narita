@@ -88,15 +88,10 @@ ActiveRecord::Schema.define(version: 20160108153136) do
     t.string   "fb_content"
     t.string   "fb_from"
     t.string   "username"
-<<<<<<< HEAD
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "message_type"
     t.integer  "stack_level"
-=======
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
->>>>>>> Feat: Import Facebook messanger messages
   end
 
   create_table "locations", force: :cascade do |t|
