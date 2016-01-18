@@ -3,7 +3,7 @@ namespace :coot do
   desc "Import all ciphertexts"
   task :import_ciphertexts => :environment do
     Dir.mkdir("/var/lib/data-diode/received/imported") unless File.exists?("/var/lib/data-diode/received/imported")
-    Dir.glob("/var/lib/data-diode/received/*.gpg").each do |path|
+    Dir.glob("/var/lib/data-diode/received/*.txt.gpg").each do |path| #TODO add image processing
       begin
         # Parse filename
         filename = File.basename(path)
@@ -19,9 +19,9 @@ namespace :coot do
         # Import content
         case type
         when "app"
-          App.import(content)
+          AppUnique.import(content)
         when "appsummary"
-          App.import_summary(content)
+          App.import(content)
         when "backup"
           Backup.import(content)
         when "call"

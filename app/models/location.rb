@@ -1,4 +1,4 @@
-import 'csv'
+require 'csv'
 class Location < ActiveRecord::Base
   def self.import(csv_text)
     csv = CSV.parse(csv_text, :headers => false)
