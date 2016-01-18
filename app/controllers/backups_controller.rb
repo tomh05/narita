@@ -65,11 +65,7 @@ class BackupsController < ApplicationController
   def import
     f = open(APP_CONFIG['server_path']+params[:filepath]+".csv");
     csv_text = f.read
-    csv = CSV.parse(csv_text, :headers => false)
-    csv.each do |row|
-      @backup = Backup.find_or_initialize_by(username: row[3].to_s, ref: row[4].to_s)
-      @backup.save
-    end
+    Backup.import(csv_text)
 
     @data = {'result' => 'backup log imported'}
     respond_to do |format|
