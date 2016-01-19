@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wa_date: 2016-01-19 16:03:13
+  wa_content: MyString
+  wa_from: MyString
+  username: MyString
+  message_type: MyString
+  stack_level: 1
+
+two:
+  wa_date: 2016-01-19 16:03:13
+  wa_content: MyString
+  wa_from: MyString
+  username: MyString
+  message_type: MyString
+  stack_level: 1

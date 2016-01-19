@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :whatsapp_messages
+
   resources :people
 
   resources :app_names

@@ -1,0 +1,41 @@
+<%= form_for(@whatsapp_message) do |f| %>
+  <% if @whatsapp_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@whatsapp_message.errors.count, "error") %> prohibited this whatsapp_message from being saved:</h2>
+
+      <ul>
+      <% @whatsapp_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :wa_date %><br>
+    <%= f.datetime_select :wa_date %>
+  </div>
+  <div class="field">
+    <%= f.label :wa_content %><br>
+    <%= f.text_field :wa_content %>
+  </div>
+  <div class="field">
+    <%= f.label :wa_from %><br>
+    <%= f.text_field :wa_from %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :message_type %><br>
+    <%= f.text_field :message_type %>
+  </div>
+  <div class="field">
+    <%= f.label :stack_level %><br>
+    <%= f.number_field :stack_level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

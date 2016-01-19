@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wa date:</strong>
+  <%= @whatsapp_message.wa_date %>
+</p>
+
+<p>
+  <strong>Wa content:</strong>
+  <%= @whatsapp_message.wa_content %>
+</p>
+
+<p>
+  <strong>Wa from:</strong>
+  <%= @whatsapp_message.wa_from %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @whatsapp_message.username %>
+</p>
+
+<p>
+  <strong>Message type:</strong>
+  <%= @whatsapp_message.message_type %>
+</p>
+
+<p>
+  <strong>Stack level:</strong>
+  <%= @whatsapp_message.stack_level %>
+</p>
+
+<%= link_to 'Edit', edit_whatsapp_message_path(@whatsapp_message) %> |
+<%= link_to 'Back', whatsapp_messages_path %>
