@@ -5,7 +5,7 @@ class BackupsController < ApplicationController
   # GET /backups
   # GET /backups.json
   def index
-    @backups = Backup.all
+    @backups = Backup.all.order(:started)
   end
 
   # GET /backups/1
@@ -70,7 +70,7 @@ class BackupsController < ApplicationController
     @data = {'result' => 'backup log imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

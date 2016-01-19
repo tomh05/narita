@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Whatsapp Messages</h1>
+<h1>Whatsapp Messages</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Wa date</th>
@@ -11,7 +11,7 @@
       <th>Username</th>
       <th>Message type</th>
       <th>Stack level</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -24,9 +24,7 @@
         <td><%= whatsapp_message.username %></td>
         <td><%= whatsapp_message.message_type %></td>
         <td><%= whatsapp_message.stack_level %></td>
-        <td><%= link_to 'Show', whatsapp_message %></td>
-        <td><%= link_to 'Edit', edit_whatsapp_message_path(whatsapp_message) %></td>
-        <td><%= link_to 'Destroy', whatsapp_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', whatsapp_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,7 +15,7 @@
   <tbody>
     <% @backups.each do |backup| %>
       <tr>
-        <td><%= format_date backup.created_at %></td>
+        <td><%= format_date backup.started %></td>
         <td><%= backup.username %></td>
         <td><%= backup.ref %></td>
         <td><%= link_to 'Destroy', backup, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger'  %></td>

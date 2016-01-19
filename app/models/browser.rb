@@ -1,6 +1,7 @@
 require 'csv'
 class Browser < ActiveRecord::Base
   def self.import(csv_text)
+    csv_text.gsub(/([^,])"([^,])/,'\1\"\2') # Hacky fix to remove quotes inside web titles
     csv = CSV.parse(csv_text, :headers => false)
     csv.each do |row|
       parsed_visit_date = DateTime.parse(row[4].to_s)

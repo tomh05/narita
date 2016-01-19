@@ -5,7 +5,7 @@ class ScreensController < ApplicationController
   # GET /screens
   # GET /screens.json
   def index
-    @screens = Screen.all
+    @screens = Screen.all.order(:event_time)
   end
 
   # GET /screens/1
