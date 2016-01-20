@@ -1,13 +1,19 @@
 require 'csv'
 class Browser < ActiveRecord::Base
   def self.import(csv_text)
-    csv_text.gsub(/([^,])"([^,])/,'\1\"\2') # Hacky fix to remove quotes inside web titles
-    csv = CSV.parse(csv_text, :headers => false)
-    csv.each do |row|
-      parsed_visit_date = DateTime.parse(row[4].to_s)
-      browser = Browser.find_or_initialize_by(title: row[2].to_s, url: row[3].to_s, visit_total: row[5].to_i, username: row[6].to_s)
-      browser.visit_date = parsed_visit_date
-      browser.save
+    #csv_text.gsub(/([^,])"([^,])/,'\1\"\2') # Hacky fix to remove quotes inside web titles
+    #csv = CSV.parse(csv_text, :headers => false)
+    #csv.each do |row|
+    csv_text.each_line do |line|
+    pattern = /([0-9]{1,2}-[0-9]{1,2}-[0-9]{1,4}),([0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}),"(.*)","([^"]*)",([^"]*),"([0-9]+)","(.*)"/
+
+    matches = pattern.match(line)
+    if matches do
+        row = matches
+        parsed_visit_date = DateTime.parse(row[4].to_s)
+        browser = Browser.find_or_initialize_by(title: row[2].to_s, url: row[3].to_s, visit_total: row[5].to_i, username: row[6].to_s)
+        browser.visit_date = parsed_visit_date
+        browser.save
     end
   end
 end
