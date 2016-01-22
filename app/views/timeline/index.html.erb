@@ -1,0 +1,111 @@
+<h1>Timelines</h1>
+
+<%= form_tag timeline_path, :method => 'get', :id => "products_search" do %>
+  <p>
+                <%= label_tag :selections, "Between:"  %>
+    <% # collection_select :selections, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
+
+<div class="container">
+    <div class='col-md-5'>
+                <%= label_tag :fromdate, "From:"  %>
+                <%= text_field_tag :fromdate, id:"fromdate", value: @fromdate_str %>
+    </div>
+    <div class='col-md-5'>
+                <%= label_tag :todate, "To:"  %>
+                <%= text_field_tag :todate, id:"todate", value: @todate_str %>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#fromdate').datetimepicker({
+            locale: "en-gb"
+        });
+        $('#todate').datetimepicker({
+            locale: "en-gb",
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#fromdate").on("dp.change", function (e) {
+            $('#todate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#todate").on("dp.change", function (e) {
+            $('#fromdate').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
+    <%= submit_tag "Filter", :name => nil %>
+  </p>
+<% end %>
+
+    <% currentdate = DateTime.new(1970,01,01) %>
+    <% last_time = DateTime.now %>
+
+    <% @Timelines.each do |timeline| %>
+
+    <% if timeline.datetime.to_date != currentdate.to_date %>
+      <% currentdate = timeline.datetime %>
+      <div class="dateboundary"><%= currentdate.strftime("%a %d %b %Y")%></div>
+    <% end %>
+
+    <% if (timeline.datetime - last_time) > 60*60 %>
+      <div class="timegap">
+          Timegap 1 hour or more
+    <%= timeline.datetime  %>
+    <%= last_time  %>
+    <%= (timeline.datetime - last_time)  %>
+      </div>
+    <% end %>
+    <% last_time = timeline.datetime %>
+
+    <% if timeline.type == "call"%>
+        <div class="bubbleholder">
+        <% if timeline.direction == "outgoing"%>
+            <div class="timeindicator outgoingtime">
+        <% else %>
+            <div class="timeindicator incomingtime">
+        <% end %>
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+
+        <% if timeline.direction == "outgoing"%>
+          <div class="bubble callbubble outgoingbubble">
+            <p><b> outgoing call</b></p>
+        <% else %>
+          <div class="bubble callbubble incomingbubble">
+            <p><b>incoming call</b></p>
+        <% end %>
+
+        <%= roughtime(timeline.duration) %>
+    </div>
+    </div>
+    <% end %>
+   <% if timeline.type == "sms" %>
+        <div class="bubbleholder">
+        <% if timeline.direction == "outgoing"%>
+        <div class="timeindicator outgoingtime">
+        <% else %>
+        <div class="timeindicator incomingtime">
+        <% end %>
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+        <% if timeline.direction == "outgoing"%>
+          <div class="bubble smsbubble outgoingbubble">
+        <% else %>
+          <div class="bubble smsbubble incomingbubble">
+        <% end %>
+      <%= timeline.content %>
+      </div>
+      </div>
+    <% end %>
+
+   <% if timeline.type == "app_unique"%>
+        <div class="bubbleholder">
+        <div class="timeindicator centertime">
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+      <div class="bubble appbubble centerbubble">
+      <%= timeline.content %>
+      </div>
+      </div>
+    <% end %>
+
+<% end %>

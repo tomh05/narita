@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'timeline', to: 'timeline#index'
+
   resources :whatsapp_messages
 
   resources :people
