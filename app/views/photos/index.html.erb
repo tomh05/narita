@@ -10,6 +10,7 @@
       <th>Long</th>
       <th>Date</th>
       <th>User</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +18,12 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><a href='<%= photo.url %>'><%= photo.url %></a></td>
+        <td><a href='images/<%= photo.url %>'><%= photo.url %></a></td>
         <td><%= photo.photo_lat %></td>
         <td><%= photo.photo_long %></td>
         <td><%= format_date photo.photo_date %></td>
         <td><%= photo.username %></td>
+        <td><img src ='images/<%= photo.url %>' width=100 height=100 /></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
 
