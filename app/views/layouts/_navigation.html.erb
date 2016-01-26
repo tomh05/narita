@@ -11,17 +11,47 @@
       <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-phone"></span>Narita</a>
       <div class="nav-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Apps", apps_path %></li>
-          <li><%= link_to "App Uniques", app_uniques_path %></li>
-          <li><%= link_to "Backups", backups_path %></li>
+
+
+            <li><%= link_to "Timeline", timeline_path %></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Social
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Facebook", facebook_messages_path %></li>
+            <li><%= link_to "WhatsApp", whatsapp_messages_path %></li>
+            <li><%= link_to "SMS", sms_messages_path %></li>
+            <li><%= link_to "Calls", calls_path %></li>
+          </ul>
+        </li>
+
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Setup
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "People", people_path %></li>
+            <li><%= link_to "App Names", app_names_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Backups", backups_path %></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Apps
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Apps", apps_path %></li>
+            <li><%= link_to "App Uniques", app_uniques_path %></li>
+          </ul>
+        </li>
+
+
           <li><%= link_to "Browsers", browsers_path %></li>
-          <li><%= link_to "Calls", calls_path%></li>
-          <!--<li><%= link_to "Contacts", contacts_path%></li>-->
           <li><%= link_to "Locations", locations_path%></li>
           <li><%= link_to "Photos", photos_path%></li>
-          <li><%= link_to "SMS", sms_messages_path%></li>
-          <li><%= link_to "Facebook", facebook_messages_path%></li>
-          <li><%= link_to "WhatsApp", whatsapp_messages_path%></li>
           <li><%= link_to "Interactions", interactions_path%></li>
         </ul>
       </div>

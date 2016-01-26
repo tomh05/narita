@@ -18,6 +18,6 @@ class SmsMessage < ActiveRecord::Base
     where(sms_sender: num)
   end
   def self.daterange(from,to)
-    where(event_time: from..to)
+    where(sms_date: from..to)
   end
 end

@@ -1,10 +1,12 @@
+
+<% screenIsOn = false %>
 <h1>Timelines</h1>
 
 <%= form_tag timeline_path, :method => 'get', :id => "products_search" do %>
   <p>
                 <%= label_tag :selections, "Between:"  %>
-    <% # collection_select :selections, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
 
+<%= select "selections", "username", @usernames, :selected => @username %>
 <div class="container">
     <div class='col-md-5'>
                 <%= label_tag :fromdate, "From:"  %>
@@ -57,12 +59,12 @@
     <% last_time = timeline.datetime %>
 
     <% if timeline.type == "call"%>
-        <div class="bubbleholder">
         <% if timeline.direction == "outgoing"%>
-            <div class="timeindicator outgoingtime">
+          <div class="bubbleholder rightalign">
         <% else %>
-            <div class="timeindicator incomingtime">
+          <div class="bubbleholder leftalign">
         <% end %>
+        <div class="timeindicator">
         <%= timeline.datetime.strftime("%H:%M") %>
         </div>
 
@@ -78,7 +80,23 @@
     </div>
     </div>
     <% end %>
+
    <% if timeline.type == "sms" %>
+        <% if timeline.direction == "outgoing"%>
+          <div class="bubbleholder rightalign">
+        <% else %>
+          <div class="bubbleholder leftalign">
+        <% end %>
+        <div class="timeindicator">
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+       <div class="bubble smsbubble">
+      <%= timeline.content %>
+      </div>
+      </div>
+    <% end %>
+
+       <% if timeline.type == "whatsapp" %>
         <div class="bubbleholder">
         <% if timeline.direction == "outgoing"%>
         <div class="timeindicator outgoingtime">
@@ -88,9 +106,28 @@
         <%= timeline.datetime.strftime("%H:%M") %>
         </div>
         <% if timeline.direction == "outgoing"%>
-          <div class="bubble smsbubble outgoingbubble">
+          <div class="bubble whatsappbubble outgoingbubble">
         <% else %>
-          <div class="bubble smsbubble incomingbubble">
+          <div class="bubble whatsappbubble incomingbubble">
+        <% end %>
+      <%= timeline.content %>
+      </div>
+      </div>
+    <% end %>
+
+       <% if timeline.type == "facebook" %>
+        <div class="bubbleholder">
+        <% if timeline.direction == "outgoing"%>
+        <div class="timeindicator outgoingtime">
+        <% else %>
+        <div class="timeindicator incomingtime">
+        <% end %>
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+        <% if timeline.direction == "outgoing"%>
+          <div class="bubble facebookbubble outgoingbubble">
+        <% else %>
+          <div class="bubble facebookbubble incomingbubble">
         <% end %>
       <%= timeline.content %>
       </div>
@@ -98,14 +135,30 @@
     <% end %>
 
    <% if timeline.type == "app_unique"%>
-        <div class="bubbleholder">
-        <div class="timeindicator centertime">
+        <div class="bubbleholder centeralign">
+        <div class="timeindicator">
         <%= timeline.datetime.strftime("%H:%M") %>
         </div>
-      <div class="bubble appbubble centerbubble">
+      <div class="bubble appbubble" style="background:#<%= timeline.color %>">
       <%= timeline.content %>
       </div>
       </div>
+    <% end %>
+
+   <% if timeline.type == "screen"%>
+
+        <% if timeline.content == "On" and screenIsOn == false%>
+          <div class="screenbubble">
+          <% screenIsOn = true %>
+        <% end %>
+        <div class="timeindicator">
+        <%= timeline.datetime.strftime("%H:%M") %>
+        </div>
+          Screen <%= timeline.content %>
+        <% if timeline.content == "Off" and screenIsOn == true %>
+          </div>
+          <% screenIsOn = false %>
+        <% end %>
     <% end %>
 
 <% end %>

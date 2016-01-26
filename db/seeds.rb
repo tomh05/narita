@@ -1,7 +1,30 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+AppName.create!([
+  {longname: "com.facebook.orca", shortname: "Facebook", color: "3b5998", priority: 10},
+  {longname: "com.android.sms", shortname: "sms", color: "00CC00", priority: 10},
+  {longname: "android", shortname: "android", color: "000000", priority: 0},
+  {longname: "com.android.settings", shortname: "Settings", color: "", priority: 2},
+  {longname: "com.sec.android.app.launcher", shortname: "Homescreen", color: "", priority: 1},
+  {longname: "tcom.google.android.GoogleCamera", shortname: "Camera", color: "", priority: 7},
+  {longname: "com.google.android.googlequicksearchbox", shortname: "Google Search", color: "", priority: 5},
+  {longname: "com.google.android.apps.maps", shortname: "Maps", color: "", priority: 5},
+  {longname: "tcom.sec.android.app.myfiles", shortname: "My Files", color: "", priority: 5},
+  {longname: "com.android.systemui", shortname: "System UI", color: "", priority: 0},
+  {longname: "com.vlingo.midas", shortname: "Voice Search", color: "", priority: 5},
+  {longname: "com.dropbox.android", shortname: "Dropbox", color: "", priority: 5},
+  {longname: "com.google.android.apps.docs.editors.sheets", shortname: "Google Sheets", color: "", priority: 5},
+  {longname: "com.android.incallui", shortname: "Phone Call", color: "", priority: 10},
+  {longname: "com.android.contacts", shortname: "Contacts", color: "", priority: 5},
+  {longname: "com.android.mms", shortname: "SMS", color: "", priority: 10},
+  {longname: "com.android.calendar", shortname: "Calendar", color: "", priority: 5},
+  {longname: "com.android.vending", shortname: "Play Store", color: "", priority: 5},
+  {longname: "com.sec.android.widgetapp.ap.hero.accuweather", shortname: "Weather widget", color: "", priority: 0},
+  {longname: "com.sec.android.app.sbrowser", shortname: "Samsung Browser", color: "", priority: 5},
+  {longname: "flipboard.boxer.app", shortname: "Flipboard Briefing", color: "", priority: 5},
+  {longname: "com.samsung.sec.android.application.csc", shortname: "Samsung Sec csc", color: "", priority: 0},
+  {longname: "com.android.chrome", shortname: "Chrome Browser", color: "fbbc05", priority: 6},
+  {longname: "com.google.android.gm", shortname: "Gmail", color: "ea4335", priority: 6},
+  {longname: "com.ubercab", shortname: "Uber", color: "000", priority: 5}
+])
+Person.create!([
+  {first_name: "Tom", last_name: "Howe", phone: "867483", alt_phone: "", google: "tom.rr.howe", facebook: "Tom Howe", twitter: "", whitelist: true, image: "", gender: 1, notes: "An Admin"},
+])

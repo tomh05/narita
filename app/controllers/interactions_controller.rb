@@ -44,7 +44,7 @@ class InteractionsController < ApplicationController
       end
       @interactees = @interactees.map(&:name).uniq
     else
-      @interactees = ["Select a username and press submi  t first"]
+      @interactees = ["Select a username and press submit first"]
     end
 
 
