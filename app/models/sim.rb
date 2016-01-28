@@ -10,4 +10,10 @@ class Sim < ActiveRecord::Base
       app.save
     end
   end
+  def self.username(name)
+    where(username: name)
+  end
+  def self.daterange(from,to)
+    where(event_time: from..to)
+  end
 end

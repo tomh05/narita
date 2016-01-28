@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  
+
   require 'net/https'
   require 'open-uri'
 
@@ -9,7 +9,11 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    if @username.nil? || @username.empty?
+      @photos = Photo.all
+    else
+      @photos = Photo.username(@username)
+    end
   end
 
   # GET /photos/1

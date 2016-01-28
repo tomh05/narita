@@ -5,7 +5,11 @@ class SimsController < ApplicationController
   # GET /sims
   # GET /sims.json
   def index
-    @sims = Sim.all
+    if @username.nil? || @username.empty?
+      @sims = Sim.all
+    else
+      @sims = Sim.username(@username)
+    end
   end
 
   # GET /sims/1
@@ -75,7 +79,7 @@ class SimsController < ApplicationController
     @data = {'result' => 'Sim events imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

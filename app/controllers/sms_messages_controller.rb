@@ -5,7 +5,11 @@ class SmsMessagesController < ApplicationController
   # GET /sms_messages
   # GET /sms_messages.json
   def index
-    @sms_messages = SmsMessage.all
+    if @username.nil? || @username.empty?
+      @sms_messages = SmsMessage.all
+    else
+      @sms_messages = SmsMessage.username(@username)
+    end
   end
 
   # GET /sms_messages/1
@@ -71,7 +75,7 @@ class SmsMessagesController < ApplicationController
     @data = {'result' => 'SMS imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

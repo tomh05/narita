@@ -4,7 +4,11 @@ class WhatsappMessagesController < ApplicationController
   # GET /whatsapp_messages
   # GET /whatsapp_messages.json
   def index
-    @whatsapp_messages = WhatsappMessage.all
+    if @username.nil? || @username.empty?
+      @whatsapp_messages = WhatsappMessage.all
+    else
+      @whatsapp_messages = WhatsappMessage.username(@username)
+    end
   end
 
   # GET /whatsapp_messages/1

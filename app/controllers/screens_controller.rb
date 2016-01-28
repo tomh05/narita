@@ -5,7 +5,12 @@ class ScreensController < ApplicationController
   # GET /screens
   # GET /screens.json
   def index
-    @screens = Screen.all.order(:event_time)
+    if @username.nil? || @username.empty?
+      @screens = Screen.all
+    else
+      @screens = Screen.username(@username)
+    end
+    @screens = @screens.order(:event_time)
   end
 
   # GET /screens/1

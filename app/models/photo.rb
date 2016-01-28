@@ -51,5 +51,10 @@ class Photo < ActiveRecord::Base
       "model" => model, "gps_latitude" => gps_latitude, "gps_longitude" => gps_longitude   }
     data
   end
-
+def self.username(name)
+    where(username: name)
+  end
+  def self.daterange(from,to)
+    where(event_time: from..to)
+  end
 end

@@ -10,7 +10,11 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    if @username.nil? || @username.empty?
+      @locations = Location.all
+    else
+      @locations = Location.username(@username)
+    end
   end
 
   # GET /locations/1
@@ -75,7 +79,7 @@ class LocationsController < ApplicationController
     @data = {'result' => 'Locations imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

@@ -4,7 +4,6 @@
 
 <%= form_tag calls_path, :method => 'get', :id => "products_search" do %>
   <p>
-    <%= collection_select :call, :username, @usernames, :username, :name , {include_blank: "<all>", selected: @username}  %>
 
 <div class="container">
     <div class='col-md-5'>

@@ -98,7 +98,7 @@ class TimelineController < ApplicationController
       newTimeline.datetime = facebook.fb_date
       newTimeline.content = facebook.fb_content
       newTimeline.other = facebook.fb_from
-      if facebook.fb_message_type == "OUTGOING"
+      if facebook.message_type == "OUTGOING"
         newTimeline.direction = "outgoing"
       else
         newTimeline.direction = "incoming"

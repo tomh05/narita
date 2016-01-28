@@ -5,7 +5,11 @@ class BrowsersController < ApplicationController
   # GET /browsers
   # GET /browsers.json
   def index
-    @browsers = Browser.all
+    if @username.nil? || @username.empty?
+      @browsers = Browser.all
+    else
+      @browsers = Browser.username(@username)
+    end
   end
 
   # GET /browsers/1
@@ -70,7 +74,7 @@ class BrowsersController < ApplicationController
     @data = {'result' => 'Browser imported'}
     respond_to do |format|
         format.json {render :json => @data.as_json}
-    end   
+    end
   end
 
   private

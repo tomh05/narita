@@ -11,7 +11,11 @@
       <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-phone"></span>Narita</a>
       <div class="nav-collapse">
         <ul class="nav navbar-nav">
-
+          <li>  <%= form_tag request.path, :method => 'get', :id => "user_select" do %>
+        <div style="position:relative; top: 8px;">
+  <%= select("selections","username", @usernames, {:selected => @username}, { :class => 'form-control', :onchange => 'this.form.submit()' }) %>
+  </div>
+  </li>
 
             <li><%= link_to "Timeline", timeline_path %></li>
           <li class="dropdown">
@@ -53,6 +57,8 @@
           <li><%= link_to "Locations", locations_path%></li>
           <li><%= link_to "Photos", photos_path%></li>
           <li><%= link_to "Interactions", interactions_path%></li>
+
+<% end %>
         </ul>
       </div>
     </div>

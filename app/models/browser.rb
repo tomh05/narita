@@ -16,4 +16,10 @@ class Browser < ActiveRecord::Base
       end
     end
   end
+  def self.username(name)
+    where(username: name)
+  end
+  def self.daterange(from,to)
+    where(visit_date: from..to)
+  end
 end

@@ -7,7 +7,6 @@ class AppUniquesController < ApplicationController
   def index
     @app_uniques = AppUnique.joins("LEFT JOIN app_names ON app_uniques.app_name = app_names.longname").select("app_uniques.*,app_names.shortname,app_names.color,app_names.priority").order('event_time ASC')
 
-    @usernames = AppUnique.select("DISTINCT username")
     begin
       fromdate = DateTime.strptime(params["fromdate"],"%d/%m/%Y %H:%M")
       todate = DateTime.strptime(params["todate"],"%d/%m/%Y %H:%M")

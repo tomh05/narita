@@ -5,7 +5,12 @@ class FacebookMessagesController < ApplicationController
   # GET /facebook_messages
   # GET /facebook_messages.json
   def index
-    @facebook_messages = FacebookMessage.all
+    if @username.nil? || @username.empty?
+      @facebook_messages = FacebookMessage.all
+    else
+      @facebook_messages = FacebookMessage.username(@username)
+    end
+  end
   end
 
   # GET /facebook_messages/1
