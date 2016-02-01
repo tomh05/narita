@@ -6,13 +6,11 @@ class BrowsersController < ApplicationController
   # GET /browsers.json
   def index
     if @username.nil? || @username.empty?
-      @browsers = Browser.all
+      @browsers = Browser.all.order(:visit_date)
     else
-      @browsers = Browser.username(@username)
+      @browsers = Browser.username(@username).order(:visit_date)
     end
   end
-
-  @browsers = @browsers.order(:visit_date)
 
   # GET /browsers/1
   # GET /browsers/1.json

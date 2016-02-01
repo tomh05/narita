@@ -11,7 +11,6 @@ class FacebookMessagesController < ApplicationController
       @facebook_messages = FacebookMessage.username(@username)
     end
   end
-  end
 
   # GET /facebook_messages/1
   # GET /facebook_messages/1.json

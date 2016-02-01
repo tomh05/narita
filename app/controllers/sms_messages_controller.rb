@@ -6,13 +6,11 @@ class SmsMessagesController < ApplicationController
   # GET /sms_messages.json
   def index
     if @username.nil? || @username.empty?
-      @sms_messages = SmsMessage.all
+      @sms_messages = SmsMessage.all.order(:sms_date)
     else
-      @sms_messages = SmsMessage.username(@username)
+      @sms_messages = SmsMessage.username(@username).order(:sms_date)
     end
   end
-
-  @sms_messages = @sms_messages.order(:sms_date)
 
   # GET /sms_messages/1
   # GET /sms_messages/1.json
