@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   get 'images/:name', to: 'image_render#show', :as => :render_image, :constraints  => { :name => /[0-z\.]+/ }
 
-  root to: "apps#index"
+  root to: "timeline#index"
 
   scope '/import' do
     post 'sms', to: 'sms_messages#import', :defaults => { :format => 'json' }

@@ -12,6 +12,8 @@ class SmsMessagesController < ApplicationController
     end
   end
 
+  @sms_messages = @sms_messages.order(:sms_date)
+
   # GET /sms_messages/1
   # GET /sms_messages/1.json
   def show

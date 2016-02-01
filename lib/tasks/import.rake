@@ -10,7 +10,7 @@ namespace :coot do
         print "filename: " + filename
         username = filename.match(/^.+?\.(.+)_.+\.gpg/)[1]
         print "username: " + username
-        extension= filename.match(/.+\.(.+).gpg/)[1]
+        extension= filename.match(/.+\.(.+?).gpg/)[1]
         print "ext: " + extension
         if (extension == "txt")
           print "about to test type"

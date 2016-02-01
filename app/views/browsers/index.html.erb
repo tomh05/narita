@@ -2,24 +2,24 @@
 
 <h1>Browser History</h1>
 
-<table class="table table-striped">
+<table class="table table-striped fixwrapped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Last visit</th>
-      <th>Visit</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th style="width:10%">Date</th>
+      <th style="width:40%">Title</th>
+      <th style="width:20%">URL</th>
+      <th style="width:10%">Total visits</th>
+      <th style="width:10%">Username</th>
+      <th style="width:10%"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @browsers.each do |browser| %>
       <tr>
+        <td><%= format_date browser.visit_date %></td>
         <td><%= browser.title %></td>
         <td><%= link_to browser.url, browser.url, :target => "_blank" %></td>
-        <td><%= format_date browser.visit_date %></td>
         <td><%= browser.visit_total %></td>
         <td><%= browser.username %></td>
         <td><%= link_to 'Destroy', browser, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>

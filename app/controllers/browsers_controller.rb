@@ -12,6 +12,8 @@ class BrowsersController < ApplicationController
     end
   end
 
+  @browsers = @browsers.order(:visit_date)
+
   # GET /browsers/1
   # GET /browsers/1.json
   def show

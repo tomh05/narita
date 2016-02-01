@@ -1,7 +1,11 @@
 module ApplicationHelper
 
     def format_date current_date
-      return current_date.strftime("#{current_date.day.ordinalize} %b %Y, %H:%M:%S")
+      if current_date.nil?
+        return "-"
+      else
+        return current_date.strftime("#{current_date.day.ordinalize} %b %Y, %H:%M:%S")
+      end
     end
-    
+
 end
