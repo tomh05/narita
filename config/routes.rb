@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   resources :locations
 
+  get 'images/:name', to: 'image_render#show', :as => :render_image, :constraints  => { :name => /[0-z\.]+/ }
+
   root to: "apps#index"
 
   scope '/import' do
