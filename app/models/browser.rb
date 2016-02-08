@@ -22,4 +22,20 @@ class Browser < ActiveRecord::Base
   def self.daterange(from,to)
     where(visit_date: from..to)
   end
+
+  def self.as_csv
+    CSV.generate do |csv|
+      #csv << column_names
+      csv << ["Participant","Type","Timestamp","Title","URL","Nth Visit"]
+      #TODO encrypt participant
+      all.each do |item|
+        #csv << item.attributes.values_at(*column_names)
+        ident = Person.username(item.username).select("identifier").first.identifier
+        if !ident.present?
+          ident = "ERR"
+        end
+        csv << [ident,"Browser Visit",item.visit_date,item.title,item.url,item.visit_total]
+      end
+    end
+  end
 end

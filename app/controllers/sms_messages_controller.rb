@@ -10,6 +10,10 @@ class SmsMessagesController < ApplicationController
     else
       @sms_messages = SmsMessage.username(@username).order(:sms_date)
     end
+    respond_to do |format|
+    format.html
+    format.csv { send_data @sms_messages.as_csv }
+  end
   end
 
   # GET /sms_messages/1

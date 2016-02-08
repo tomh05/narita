@@ -18,4 +18,19 @@ class Screen < ActiveRecord::Base
   def self.daterange(from,to)
     where(event_time: from..to)
   end
+  def self.as_csv
+    CSV.generate do |csv|
+      #csv << column_names
+      csv << ["Participant","Type","Timestamp","Detail"]
+      #TODO encrypt participant
+      all.each do |item|
+        #csv << item.attributes.values_at(*column_names)
+        ident = Person.username(item.username).select("identifier").first.identifier
+        if !ident.present?
+          ident = "ERR"
+        end
+        csv << [ident,"Screen",item.event_time,item.event_type]
+      end
+    end
+  end
 end

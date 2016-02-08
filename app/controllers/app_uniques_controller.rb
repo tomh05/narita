@@ -42,8 +42,12 @@ class AppUniquesController < ApplicationController
         @app_timeline_data << [name, entry.event_time, entry.event_time]
       end
     end
+  respond_to do |format|
+    format.html
+    format.csv { send_data @app_uniques.as_csv }
   end
-  puts @app_timeline_data
+  end
+  #puts @app_timeline_data
 
   # GET /app_uniques/1
   # GET /app_uniques/1.json

@@ -17,10 +17,10 @@ namespace :coot do
           type = filename.match(/^.+?\..+_(.+?).txt.gpg/)[1]
           print "type: " + type
           #Decrypt
-          if path.include? "pricenathan1991_fb"
+          if path.include? "pricenathan1999_fb"
               `/bin/nathanfixer #{path}`
           end
-          if path.include? "pricenathan1991_whatsapp"
+          if path.include? "pricenathan1999_whatsapp"
               `/bin/nathanfixer #{path}`
           end
 

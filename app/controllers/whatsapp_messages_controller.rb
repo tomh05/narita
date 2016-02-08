@@ -9,6 +9,10 @@ class WhatsappMessagesController < ApplicationController
     else
       @whatsapp_messages = WhatsappMessage.username(@username)
     end
+  respond_to do |format|
+    format.html
+    format.csv { send_data @whatsapp_messages.as_csv }
+  end
   end
 
   # GET /whatsapp_messages/1

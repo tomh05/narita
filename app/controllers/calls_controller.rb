@@ -74,6 +74,10 @@ class CallsController < ApplicationController
       @total_distinct_outgoing = Call.where(call_type: "OUTGOING").distinct.count
 
     end
+  respond_to do |format|
+    format.html
+    format.csv { send_data @calls_display.as_csv }
+  end
   end
 
   # GET /calls/1

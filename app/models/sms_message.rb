@@ -20,4 +20,28 @@ class SmsMessage < ActiveRecord::Base
   def self.daterange(from,to)
     where(sms_date: from..to)
   end
+
+  def self.as_csv
+    CSV.generate do |csv|
+      #csv << column_names
+      csv << ["Participant","Type","Timestamp","Direction","To or From (hashed)","Character Count"]
+      #TODO encrypt participant
+      all.each do |item|
+        #csv << item.attributes.values_at(*column_names)
+        senderHash = Digest::SHA2.new(512).hexdigest(item.sms_sender)
+        if item.sms_folder == "sent"
+          direction = "outgoing"
+        elsif item.sms_folder == "inbox"
+          direction = "incoming"
+        else
+          direction = "ERR"
+        end
+        ident = Person.username(item.username).select("identifier").first.identifier
+        if !ident.present?
+          ident = "ERR"
+        end
+        csv << [ident,"SMS",item.sms_date,direction,senderHash,item.sms_content.length]
+      end
+    end
+  end
 end

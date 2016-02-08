@@ -10,6 +10,10 @@ class FacebookMessagesController < ApplicationController
     else
       @facebook_messages = FacebookMessage.username(@username)
     end
+    respond_to do |format|
+    format.html
+    format.csv { send_data @facebook_messages.as_csv }
+  end
   end
 
   # GET /facebook_messages/1
