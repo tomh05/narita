@@ -10,6 +10,10 @@ class SimsController < ApplicationController
     else
       @sims = Sim.username(@username)
     end
+    respond_to do |format|
+    format.html
+    format.csv { send_data @sims.as_csv }
+  end
   end
 
   # GET /sims/1

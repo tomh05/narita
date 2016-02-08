@@ -11,6 +11,10 @@ class ScreensController < ApplicationController
       @screens = Screen.username(@username)
     end
     @screens = @screens.order(:event_time)
+    respond_to do |format|
+    format.html
+    format.csv { send_data @screens.as_csv }
+  end
   end
 
   # GET /screens/1

@@ -10,6 +10,10 @@ class BrowsersController < ApplicationController
     else
       @browsers = Browser.username(@username).order(:visit_date)
     end
+    respond_to do |format|
+    format.html
+    format.csv { send_data @browsers.as_csv }
+  end
   end
 
   # GET /browsers/1

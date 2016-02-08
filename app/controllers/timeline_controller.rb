@@ -1,3 +1,4 @@
+require 'identicon'
 class TimelineController < ApplicationController
   def index
     #Calls
