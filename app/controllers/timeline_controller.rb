@@ -52,8 +52,8 @@ class TimelineController < ApplicationController
       @sms_messages = @sms_messages.daterange(fromdate,todate)
       @app_uniques = @app_uniques.daterange(fromdate,todate)
       @screens = @screens.daterange(fromdate,todate)
-      @facebook_messages = @facefacebook_messages.daterange(fromdate,todate)
-      @whatsapp_messages = @whatwhatsapp_messages.daterange(fromdate,todate)
+      @facebook_messages = @facebook_messages.daterange(fromdate,todate)
+      @whatsapp_messages = @whatsapp_messages.daterange(fromdate,todate)
       @browsers = @browsers.daterange(fromdate,todate)
     end
 

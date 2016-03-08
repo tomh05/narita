@@ -10,6 +10,7 @@
       <th>Long</th>
       <th>Date</th>
       <th>User</th>
+      <th>Source</th>
       <th>Image</th>
       <th colspan="3"></th>
     </tr>
@@ -23,6 +24,7 @@
         <td><%= photo.photo_long %></td>
         <td><%= format_date photo.photo_date %></td>
         <td><%= photo.username %></td>
+        <td><%= photo.source %></td>
         <td><%= image_tag(render_image_path( photo.url ),size: "100") %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
       </tr>
